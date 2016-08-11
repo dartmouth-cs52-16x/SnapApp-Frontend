@@ -55,3 +55,4 @@ Rajiv Ramaiah, Chris Davis, Zuff Idries, Josh Kerber, Brophy Tyree
 
 ## Acknowledgments
 [The HW5 Part 1 instruction guide](http://cs52.me/assignments/hw5p1/)
+The design for the sidebar was inspired from TETHR UI KIT and the design for the feed from getstream UI kit
