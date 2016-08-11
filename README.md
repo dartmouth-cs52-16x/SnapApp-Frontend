@@ -3,12 +3,15 @@
 SnapApp is a web application that will allow users to send pictures and text to other users that will disappear after they are seen by the receiving user. Think of Snapchat but in your web browser, allowing you to communicate with your friends and family from your computer whenever it is open and in front of you instead of having to get your phone out, unlock it, and search for Snapchat to get the job done. SnapApp supports groups, so you can send messages to a group of pre-selected people so you don't have to constantly search for the people you want to send pictures to.
 
 Console:
+
 ![Image](./images/Snaps-preview.png)
 
 Compose Snap Screen:
+
 ![Image](./images/compose-wire.png)
 
 Settings Screen:
+
 ![Image](./images/settings-wire.png)
 
 
