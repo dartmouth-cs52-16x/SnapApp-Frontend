@@ -5,7 +5,15 @@ SnapApp is a web application that will allow users to send pictures and text to 
 Console:
 ![Image](./images/Snaps-preview.png)
 
-Users will see all of their incoming snaps and activity on this main page which they reach after logging in or signing up. They can then click on the icons on the left to create a new Snap to send to people, to manage their account settings, and to log out of SnapApp!
+Compose Snap Screen:
+![Image](./images/compose-wire.png)
+
+Settings Screen:
+![Image](./images/settings-wire.png)
+
+
+
+Users will see all of their incoming snaps and activity on the console page which they reach after logging in or signing up. They can then click on the icons on the left to create a new Snap, as seen in the compose snap image above, to send to people, or to manage their account settings, also seen in the settings screen image above, and to log out of SnapApp!
 
 
 ## Architecture
