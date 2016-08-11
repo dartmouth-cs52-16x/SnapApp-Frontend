@@ -35,7 +35,7 @@ This will start the backend server at your own local host to test.
 
 ## Deployment
 
-Currently we are going to test the project locally before we host the Backend on Heroku or AWS. In order to start the backend, ensure that you have MongoDB set up correctly on your computer. You should have a data/db Navigate to the directory for the SnapApp-Backend and run `npm run dev` which will start the server at the localhost:9090 for the front end of your application to communicate with. 
+Currently we are going to test the project locally before we host the Backend on Heroku or AWS. In order to start the backend, ensure that you have MongoDB set up correctly on your computer. You should have a data/db directory at the root of your computer as MongoDB requires this. Navigate to the directory for the SnapApp-Backend and run `npm run dev` which will start the server at the localhost:9090 for the front end of your application to communicate with. You will also need to run `mongod &` in another terminal window at the root of your computer for the app to connect to. 
 
 Ensure that the SnapApp-Frontend points to the correct localhost port. Now, navigate to the SnapApp-Frontend directory and run `npm start` to launch the project running on a local host. Navigate to that local host path in your Chrome browser and begin testing.
 
