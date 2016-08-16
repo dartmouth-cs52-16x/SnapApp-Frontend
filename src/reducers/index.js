@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import CountReducer from './count-reducer';
+import SnapReducer from './snap-reducer';
 
-const rootReducer = combineReducers({
-  count: CountReducer,
+const allReducers = combineReducers({
+  snaps: SnapReducer,
 });
 
-export default rootReducer;
+export default allReducers;
