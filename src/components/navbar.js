@@ -9,12 +9,12 @@ const NavBar = () => {
           Profile
         </div>
       </Link>
-      <Link to="/">
+      <Link to="/snaps/new">
         <div id="Create Snap">
           Create Snap
         </div>
       </Link>
-      <Link to="/">
+      <Link to="/settings">
         <div id="Settings">
           Settings
         </div>

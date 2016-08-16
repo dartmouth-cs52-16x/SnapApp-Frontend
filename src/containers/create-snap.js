@@ -13,6 +13,7 @@ class CreateSnap extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onCancel = this.onCancel.bind(this);
+    this.imageWasSet = this.imageWasSet.bind(this);
   }
 
   onSubmit() {
@@ -24,7 +25,7 @@ class CreateSnap extends Component {
     }
     const sentFrom = 'fromUserID';
     const sentTo = 'toUserID';
-    this.props.createPost({ image, sentFrom, sentTo });
+    this.props.createSnap({ image, sentFrom, sentTo });
   }
 
   onCancel() {
