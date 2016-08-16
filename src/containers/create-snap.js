@@ -8,7 +8,7 @@ class CreateSnap extends Component {
     super(props);
 
     this.state = {
-      image: '',
+      pictureURL: '',
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -17,15 +17,15 @@ class CreateSnap extends Component {
   }
 
   onSubmit() {
-    let image;
-    if (!this.state.image) {
-      image = 'No Image';
+    let pictureURL;
+    if (!this.state.pictureURL) {
+      pictureURL = 'No Image';
     } else {
-      image = this.state.image;
+      pictureURL = this.state.pictureURL;
     }
     const sentFrom = 'fromUserID';
     const sentTo = 'toUserID';
-    this.props.createSnap({ image, sentFrom, sentTo });
+    this.props.createSnap({ pictureURL, sentFrom, sentTo });
   }
 
   onCancel() {
@@ -34,7 +34,7 @@ class CreateSnap extends Component {
 
   imageWasSet(event) {
     this.setState({
-      image: event.target.value,
+      pictureURL: event.target.value,
     });
   }
 

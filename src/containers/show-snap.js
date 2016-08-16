@@ -1,33 +1,49 @@
 import React, { Component } from 'react';
 import { getSnap, deleteSnap } from '../actions/index';
 import { connect } from 'react-redux';
+import Timer from 'react.timer';
+import Timers from 'react-timers';
 
 class ShowSnap extends Component {
+  mixins: [Timers]
+
   constructor(props) {
     super(props);
 
     this.state = {
-      text: '',
+      pictureURL: '',
+      sentFrom: '',
+      sentTo: '',
     };
   }
+
 
   componentWillMount() {
     this.props.getSnap(this.props.params.id);
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.deleteSnap(this.props.params.id);
+    }, 10000);
+  }
+
   componentWillReceiveProps(props) {
     if (props.snap) {
       this.setState({
-        title: props.snap.title,
-        tags: props.snap.tags,
-        content: props.snap.content,
+        pictureURL: props.snap.pictureURL,
+        sentFrom: props.snap.sentFrom,
+        sentTo: props.snap.sentTo,
       });
     }
   }
 
   render() {
     return (
-      <h1>Hi</h1>
+      <div>
+        <h1>{this.state.pictureURL}</h1>
+        <Timer countDown startTime={10} />
+      </div>
     );
   }
 }

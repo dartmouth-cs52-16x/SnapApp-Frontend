@@ -53,6 +53,7 @@ export function getSnap(id) {
 }
 
 export function deleteSnap(id) {
+  console.log('deleting snap');
   return (dispatch) => {
     axios.delete(`${BASE_URL}/snaps/${id}`).then((response) => {
       dispatch({
