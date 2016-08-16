@@ -1,11 +1,11 @@
 import { ActionTypes } from '../actions';
 
-const SnapsReducer = (state = { all: [], post: null }, action) => {
+const SnapsReducer = (state = { all: [], snap: null }, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_SNAPS:
-      return { all: action.payload, post: state.post };
+      return { all: action.payload, snap: state.snap };
     case ActionTypes.FETCH_SNAP:
-      return { all: state.all, post: action.payload };
+      return { all: state.all, snap: action.payload };
     default:
       return state;
   }

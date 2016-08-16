@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { getSnap, deleteSnap } from '../actions/index';
+import { connect } from 'react-redux';
 
 class ShowSnap extends Component {
   constructor(props) {
@@ -9,6 +11,20 @@ class ShowSnap extends Component {
     };
   }
 
+  componentWillMount() {
+    this.props.getSnap(this.props.params.id);
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.snap) {
+      this.setState({
+        title: props.snap.title,
+        tags: props.snap.tags,
+        content: props.snap.content,
+      });
+    }
+  }
+
   render() {
     return (
       <h1>Hi</h1>
@@ -16,4 +32,8 @@ class ShowSnap extends Component {
   }
 }
 
-export default ShowSnap;
+const mapStateToProps = (state) => ({
+  snap: state.snaps.snap,
+});
+
+export default connect(mapStateToProps, { getSnap, deleteSnap })(ShowSnap);
