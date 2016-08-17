@@ -19,7 +19,6 @@ class App extends Component {
           {this.props.children}
         </div>
         <div id="content">
-          <h1>Snap App</h1>
         </div>
       </div>
     );

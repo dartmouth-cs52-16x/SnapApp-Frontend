@@ -3,13 +3,18 @@ import { Link } from 'react-router';
 
 const Snap = (props) => {
   return (
-    <Link to={`snaps/${props.snapId}`}>
-      <div className="Snap">
-        <div id="fromUser">
-          Snap received from {props.fromUser}
-        </div>
+    <div className="home-snap-full">
+      <div id="snap-circle">
+        <i className="material-icons">drafts</i>
       </div>
-    </Link>
+      <Link to={`snaps/${props.snapId}`}>
+        <div className="Snap">
+          <div id="fromUser">
+            Snap received from {props.fromUser}
+          </div>
+        </div>
+      </Link>
+    </div>
   );
 };
 

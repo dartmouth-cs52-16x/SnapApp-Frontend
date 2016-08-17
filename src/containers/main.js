@@ -10,16 +10,29 @@ class Main extends Component {
   }
 
   render() {
+    let receivedSnaps = 1;
     let snaps = this.props.snaps.map((snap) => {
+      receivedSnaps = 0;
       return (
         <Snap fromUser={snap.pictureURL} snapId={snap.id} key={snap.id} />
       );
     });
-    return (
-      <div>
-        {snaps}
-      </div>
-    );
+    if (receivedSnaps === 0) {
+      // recieved snaps
+      return (
+        <div id="recv-snaps">
+          <h1 id="recv-snaps-title">NEW SNAPS</h1>
+          {snaps}
+        </div>
+      );
+    } else {
+      // did not recieve any snaps
+      return (
+        <div id="recv-snaps">
+          <h1 id="recv-snaps-title">NO NEW SNAPS</h1>
+        </div>
+      );
+    }
   }
 }
 
