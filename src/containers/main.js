@@ -12,7 +12,7 @@ class Main extends Component {
   render() {
     let snaps = this.props.snaps.map((snap) => {
       return (
-        <Snap fromUser={snap.fromUser} snapId={snap.id} key={snap.id} />
+        <Snap fromUser={snap.pictureURL} snapId={snap.id} key={snap.id} />
       );
     });
     return (
