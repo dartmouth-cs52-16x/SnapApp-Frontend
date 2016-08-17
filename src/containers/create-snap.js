@@ -3,6 +3,7 @@ import { createSnap } from '../actions/index.js';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 
+
 class CreateSnap extends Component {
   constructor(props) {
     super(props);
@@ -53,6 +54,7 @@ class CreateSnap extends Component {
         <div id="submit">
           <button onClick={this.onSubmit}>Submit</button>
         </div>
+
       </div>
     );
   }
