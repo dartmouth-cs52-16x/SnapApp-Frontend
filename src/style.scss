@@ -1,0 +1,125 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* ================ UNIVERSAL ================ */
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: rgb(10%, 10%, 10%);
+  background: darken(white, 10%);
+  font-size: 16px;
+}
+
+#full {
+  display: flex;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+i {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* =============== LEFT SIDE NAV BAR ================ */
+
+.NavBar {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0px;
+  background-color: rgba(0, 0, 0, 0.85);
+  width: 125px;
+  margin-bottom: 0px;
+  height: 700px;
+}
+
+.nav-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.nav-user-img {
+  padding: 15%;
+  width: 100%;
+  height: auto;
+  padding-bottom: 5%;
+}
+
+.nav-list-element {
+  float: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#nav-top {
+  margin-top: 0px;
+}
+
+#nav-top-link {
+  height: 125px;
+}
+
+#nav-top-link:hover {
+  background-color: inherit;
+}
+
+.nav-list-link {
+  border: none;
+  display: block;
+  height: 100px;
+  width: 125px;
+  color: rgba(250, 250, 250, 0.8);
+  text-align: center;
+}
+
+// fade-in transition
+.nav-list-link:hover {
+  cursor: pointer;
+  transition-property: all;
+  transition-duration: 0.5s;
+	background-color: rgba(0, 200, 0, 0.8);
+}
+
+.nav-link-div {
+  margin-top: 100px;
+  margin-bottom: auto;
+  border: 2px solid white;
+  vertical-align: middle;
+}
+
+.nav-link-div img {
+  border-top: 0px;
+}
+
+.nav-list-link:hover {
+  border: none;
+  background-color: none;
+}
+
+#nav-bottom-title {
+  display: inline-block;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+#nav-bottom-text {
+  color: white;
+  font-size: 17px;
+  text-align: center;
+}
+
+// ================ CREATE SNAP CONTAINER ================
+
+.NewSnap {
+  display: flex;
+  flex-direction: row;
+  margin-left: 0px;
+}
