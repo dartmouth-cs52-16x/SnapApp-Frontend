@@ -40,8 +40,10 @@ class ShowSnap extends Component {
 
   render() {
     return (
-      <div>
-        <h1>{this.state.pictureURL}</h1>
+      <div id="show-snap-full">
+        <div id="show-snap-box">
+          <h1>{this.state.pictureURL}</h1>
+        </div>
         <Timer countDown startTime={10} />
       </div>
     );

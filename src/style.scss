@@ -116,7 +116,21 @@ i {
   text-align: center;
 }
 
-// ================ CREATE SNAP CONTAINER ================
+/* ================= SINGLE SNAP DISPLAY ================ */
+
+#show-snap-full {
+  margin-left: 100px;
+  display: flex;
+}
+
+#show-snap-box {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 3px solid black;
+}
+
+/* ================ CREATE SNAP CONTAINER ================ */
 
 .NewSnap {
   display: flex;
