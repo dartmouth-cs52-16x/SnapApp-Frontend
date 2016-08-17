@@ -31,7 +31,10 @@ class CreateSnap extends Component {
     const sentFrom = 'fromUserID';
     const sentTo = 'toUserID';
     this.props.createSnap({ pictureURL, sentFrom, sentTo });
+<<<<<<< HEAD
     console.log('snap created');
+=======
+>>>>>>> e444a8c3a71fee3c870629e2ff551073751d8e7a
   }
 
   onCancel() {

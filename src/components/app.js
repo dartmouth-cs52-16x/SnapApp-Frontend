@@ -13,14 +13,26 @@ class App extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <div id="full">
+=======
+      <div className="Root">
+        <Link to="/">
+          <div id="logo">
+            <h1>Snap App</h1>
+          </div>
+        </Link>
+>>>>>>> e444a8c3a71fee3c870629e2ff551073751d8e7a
         <div id="layout">
           <NavBar />
           {this.props.children}
         </div>
+<<<<<<< HEAD
         <div id="content">
           <h1>Snap App</h1>
         </div>
+=======
+>>>>>>> e444a8c3a71fee3c870629e2ff551073751d8e7a
       </div>
     );
   }
