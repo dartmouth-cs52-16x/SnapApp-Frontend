@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-// const BASE_URL = 'http://localhost:9090/api';
-const BASE_URL = 'http://snapapp-backend.herokuapp.com/api';
+const BASE_URL = 'http://localhost:9090/api';
+// const BASE_URL = 'http://snapapp-backend.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_SNAPS: 'FETCH_SNAPS',
