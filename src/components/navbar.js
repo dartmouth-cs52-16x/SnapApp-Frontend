@@ -17,12 +17,12 @@ const NavBar = () => {
         </li>
         <li className="nav-list-element">
           <Link className="nav-list-link" to="/snaps/new">
-            <i className="material-icons">add_a_photo</i>
+            <i className="material-icons">add_circle</i>
           </Link>
         </li>
         <li className="nav-list-element">
           <a className="nav-list-link" href="#">
-            <i className="material-icons">group_add</i>
+            <i className="material-icons">group</i>
           </a>
         </li>
         <li className="nav-list-element">
@@ -34,6 +34,9 @@ const NavBar = () => {
           <Link className="nav-list-link" to="/">
             <i className="material-icons">exit_to_app</i>
           </Link>
+        </li>
+        <li className="nav-list-element" id="nav-bottom">
+          <Link className="nav-list-link" to="" />
         </li>
       </ul>
     </div>

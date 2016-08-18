@@ -12,10 +12,10 @@ class CreateSnap extends Component {
     this.state = {
       pictureURL: '',
       files: [],
+      snapReady: 0,
     };
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.onCancel = this.onCancel.bind(this);
     this.imageWasSet = this.imageWasSet.bind(this);
     this.onOpenClick = this.onOpenClick.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -33,16 +33,13 @@ class CreateSnap extends Component {
     this.props.createSnap({ pictureURL, sentFrom, sentTo });
   }
 
-  onCancel() {
-    browserHistory.push('/');
-  }
-
   onDrop(files) {
     // const newArray = this.state.files.slice();
     console.log('Received files: ', files);
     // newArray.push(files);
     this.setState({
       files,
+      snapReady: 1,
     });
   }
 
@@ -53,48 +50,84 @@ class CreateSnap extends Component {
 
 
   imageWasSet(event) {
-    this.setState({
-      pictureURL: event.target.value,
-    });
+    if (event.target.value !== '') {
+      this.setState({
+        pictureURL: event.target.value,
+        snapReady: 1,
+      });
+    } else {
+      this.setState({
+        pictureURL: event.target.value,
+        snapReady: 0,
+      });
+    }
   }
 
 
   render() {
-    return (
-      <div className="NewSnap">
-        <div id="header">
-          <div>Send A Snap!!!</div>
-          <button id="cancel" onClick={this.onCancel}>Cancel</button>
+    if (this.state.snapReady === 0) {
+      // snap not ready to send
+      return (
+        <div className="NewSnap">
+          <div id="ns-header">SEND A SNAP</div>
+          <div className="ns-options">
+            <div className="ns-icons">
+              <div id="ns-snapshot">
+                <i id="snapshot-icon" className="material-icons">add_a_photo</i>
+              </div>
+
+              <div id="ns-Dropzone">
+                <Dropzone ref="dropzone" style="border: none" onDrop={this.onDrop} multiple={false}>
+                  <i id="drop-zone-icon" className="material-icons">cloud_upload</i>
+                </Dropzone>
+              </div>
+            </div>
+          </div>
+          {this.state.files.length > 0 ? <div className="pic-to-send">
+            <div id="pts-img">{this.state.files.map((file) =>
+              <img key={file.size} role="presentation" src={file.preview} width="500" />
+            )}
+            </div>
+          </div> : null}
+          <div id="ns-text-send">
+            Send text (for testing): <input placeholder="Image Here!!!" onChange={this.imageWasSet} value={this.state.image} />
+          </div>
         </div>
+      );
+    } else {
+      // snap ready to send
+      return (
+        <div className="NewSnap">
+          <div id="ns-header">SEND A SNAP</div>
+          <div className="ns-options">
 
-        <div id="image">
-          Upload Image: <input placeholder="Image Here!!!" value={this.state.image} onChange={this.imageWasSet} />
-        </div>
+            <div id="ns-snapshot">
+              <i id="snapshot-icon" className="material-icons">add_a_photo</i>
+            </div>
 
-        <div id="submit">
-          <button onClick={this.onSubmit}>Submit</button>
-        </div>
-
-        <div id="Dropzone">
-          <Dropzone ref="dropzone" onDrop={this.onDrop} multiple={false}>
-            <div>Click here to add files.</div>
-          </Dropzone>
-          <button type="button" onClick={this.onOpenClick}>
-            Select an image to send
-          </button>
-
-          {this.state.files.length > 0 ? <div>
-            <h2>Sending {this.state.files.length} file...</h2>
-            <div>{this.state.files.map((file) =>
+            <div id="ns-Dropzone">
+              <Dropzone ref="dropzone" style="border: none;" onDrop={this.onDrop} multiple={false}>
+                <i id="drop-zone-icon" className="material-icons">cloud_upload</i>
+              </Dropzone>
+            </div>
+          </div>
+          {this.state.files.length > 0 ? <div className="pic-to-send">
+            <div id="pts-img">{this.state.files.map((file) =>
               <img key={file.size} role="presentation" src={file.preview} width="300" />
             )}
             </div>
           </div> : null}
-
+          <div id="ns-text-send">
+            Send text (for testing): <input placeholder="Image Here!!!" value={this.state.image} onChange={this.imageWasSet} />
+          </div>
+          <div id="ns-submit">
+            <div>
+              <a onClick={this.onSubmit}>SEND</a>
+            </div>
+          </div>
         </div>
-
-      </div>
-    );
+      );
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 html, body {
+  height: 100%;
   padding: 0;
   margin: 0;
-  overflow: auto;
 }
 
 /* ================ UNIVERSAL ================ */
@@ -22,6 +22,11 @@ body {
   flex-direction: column;
 }
 
+#layout {
+  width: 100%;
+  margin-right: 200px;
+}
+
 /* =============== LEFT SIDE NAV BAR ================ */
 
 .NavBar i {
@@ -33,13 +38,11 @@ body {
 
 .NavBar {
   float: left;
-  display: flex;
-  flex-direction: column;
   margin-left: 0px;
   background-color: rgba(0, 0, 0, 0.85);
   width: 125px;
   margin-bottom: 0px;
-  height: 100%;
+  min-height: 100%;
 }
 
 .nav-list {
@@ -62,6 +65,10 @@ body {
 
 #nav-top {
   margin-top: 0px;
+}
+
+#nav-bottom {
+  border-bottom: none;
 }
 
 #nav-top-link {
@@ -141,7 +148,7 @@ body {
   border-radius: 50%;
   width: 15px;
   height: 15px;
-  background-color: rgb(100, 195, 255);
+  background-color: #0BB5FF;
   margin-left: 193px;
 }
 
@@ -161,7 +168,7 @@ body {
   padding: 10px;
   background-color: white;
   margin-bottom: 0px;
-  width: 250%;
+  width: 100%;
 }
 
 .home-snap-full i {
@@ -180,7 +187,7 @@ body {
   color: white;
   margin-left: -100px;
   margin-top: -10px;
-  background-color: rgb(100, 195, 255);
+  background-color: #0BB5FF;
   height: 60px;
   width: 60px;
   border-radius: 50%;
@@ -230,7 +237,113 @@ body {
 /* ================ CREATE SNAP CONTAINER ================ */
 
 .NewSnap {
+  margin-left: 160px;
+}
+
+.ns-options {
+  margin-top: -20px;
+  width: 500px;
+  height: 170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ns-icons {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#ns-header {
+  padding-bottom: 30px;
+  margin-top: 40px;
+  font-weight: 100;
+  font-size: 14px;
+}
+
+#drop-zone-icon, #snapshot-icon {
+  cursor: pointer;
+  font-size: 180px;
+}
+
+#drop-zone-icon {
+  float: right;
+}
+
+#snapshot-icon {
+  float: left;
+}
+
+#ns-text-send {
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+#drop-zone-icon:active, #snapshot-icon:active {
+  color: #0BB5FF;
+}
+
+.pic-to-send {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#pts-img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============== SUBMIT BUTTON SEND SCREEN ======= */
+
+#ns-submit {
   display: flex;
-  flex-direction: row;
-  margin-left: 200px;
+  flex-direction: column;
+  background-color: rgba(1, 1, 1, 0.3);
+  height: 135px;
+  width: 330px;
+  border-radius: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 100px;
+  padding: 35px;
+}
+
+#ns-submit div {
+  font-family: 'Arial';
+  width: 251px;
+  border: white solid 4px;
+  cursor: pointer;
+  background-color: #0BB5FF;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#ns-submit a {
+  border: none;
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+#ns-submit div:hover {
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  background-color: white;
+}
+
+#ns-submit div:hover a {
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  color: #0BB5FF;
+  background-color: rgba(0,0,0,0);
 }
