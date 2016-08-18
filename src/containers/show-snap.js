@@ -26,11 +26,15 @@ class ShowSnap extends Component {
         sentTo: props.snap.sentTo,
       });
     }
+    console.log(`props: ${this.props}`);
+    console.log(`state: ${this.state}`);
   }
 
   render() {
+    console.log(`props: ${this.props.snap}`);
+    console.log(`state: ${this.state}`);
     return (
-      <h1>{this.state.pictureURL}</h1>
+      <h1>Snap goes here: {this.state.pictureURL}</h1>
     );
   }
 }
