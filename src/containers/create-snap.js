@@ -118,7 +118,7 @@ class CreateSnap extends Component {
             </div>
           </div> : null}
           <div id="ns-text-send">
-            Send text (for testing): <input placeholder="Image Here!!!" value={this.state.image} onChange={this.imageWasSet} />
+            Send text (for testing): <input placeholder="Enter text here" value={this.state.pictureURL} onChange={this.imageWasSet} />
           </div>
           <div id="ns-submit">
             <div>

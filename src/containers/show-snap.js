@@ -25,7 +25,7 @@ class ShowSnap extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.deleteSnap(this.props.params.id);
-    }, 1000);
+    }, 4000);
   }
 
   componentWillReceiveProps(props) {
@@ -44,7 +44,7 @@ class ShowSnap extends Component {
         <div id="show-snap-box">
           <h1>{this.state.pictureURL}</h1>
         </div>
-        <Timer countDown startTime={1} />
+        <Timer countDown startTime={4} />
       </div>
     );
   }
