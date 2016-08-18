@@ -49,6 +49,7 @@
     "react-dropzone": "^3.5.3",
     "react-redux": "^4.4.5",
     "react-router": "^2.5.2",
+    "react-time": "^4.2.0",
     "react-timer": "^1.0.1",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
