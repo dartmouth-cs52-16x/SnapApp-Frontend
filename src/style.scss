@@ -1,7 +1,7 @@
 html, body {
   padding: 0;
   margin: 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* ================ UNIVERSAL ================ */
@@ -14,7 +14,6 @@ body {
 }
 
 #full {
-  background-color: rgba(250,250,250,0.8);
   display: flex;
 }
 
@@ -23,13 +22,14 @@ body {
   flex-direction: column;
 }
 
-i {
+/* =============== LEFT SIDE NAV BAR ================ */
+
+.NavBar i {
+  text-decoration: none;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
 }
-
-/* =============== LEFT SIDE NAV BAR ================ */
 
 .NavBar {
   float: left;
@@ -39,7 +39,7 @@ i {
   background-color: rgba(0, 0, 0, 0.85);
   width: 125px;
   margin-bottom: 0px;
-  height: 700px;
+  height: 100%;
 }
 
 .nav-list {
@@ -119,36 +119,98 @@ i {
 
 /* =============== UNOPENED RECIEVED SNAPS DISPLAY ====== */
 
+#recv-snaps-title {
+  padding-bottom: 30px;
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 35px;
+  margin-left: 160px;
+  font-weight: 100;
+  font-size: 14px;
+}
+
 #recv-snaps {
   display: block;
-  height: 1000px;
-  margin-top: 50px;
+  height: 100%;
   padding-left: 20px;
   margin-left: 200px;
   border-left: 1px solid rgba(0,0,0,0.5);
 }
 
-#recv-snaps-title {
-  font-weight: 100;
-  font-size: 14px;
+#recv-snaps-end {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  background-color: rgb(100, 195, 255);
+  margin-left: 193px;
 }
 
-/* ================ SINGLE SNAP HOMEPAGE DISPLAY ======== */
+/* ================ HOMEPAGE DISPLAY (SINGLE SNAPS CSS) ======== */
+
+#home-snap-icon-hover {
+  display: none;
+}
+
+#home-snap-icon-no-hover {
+  color: white;
+}
 
 .home-snap-full {
-  -moz-box-shadow: 0 0 3px #999;
-  -webkit-box-shadow: 0 0 3px #999;
+  margin-top: 50px;
+  margin-left: 40px;
+  padding: 10px;
   background-color: white;
-  //border: 1px solid black;
+  margin-bottom: 0px;
+  width: 250%;
+}
+
+.home-snap-full i {
+  text-decoration: none;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#home-snap-first {
+  margin-top: -50px;
 }
 
 #snap-circle {
-  margin-left: -52px;
+  display: inline-block;
+  color: white;
+  margin-left: -100px;
+  margin-top: -10px;
   background-color: rgb(100, 195, 255);
   height: 60px;
   width: 60px;
   border-radius: 50%;
   text-align: center;
+  cursor: pointer;
+}
+
+#snap-circle:hover #home-snap-icon-no-hover {
+  display: none;
+}
+
+#snap-circle:hover #home-snap-icon-hover {
+  display: inline-block;
+  color: white;
+  font-size: 30px;
+}
+
+#open-snap {
+  border: none;
+}
+
+#home-snap-p1 {
+  margin-top: -10px;
+}
+
+#home-snap-p1 i {
+  text-decoration: none;
+  position: inherit;
+  font-size: 30px;
+  transform: none;
 }
 
 /* ================= SINGLE SNAP VIEW DISPLAY =========== */
@@ -170,5 +232,5 @@ i {
 .NewSnap {
   display: flex;
   flex-direction: row;
-  margin-left: 0px;
+  margin-left: 200px;
 }

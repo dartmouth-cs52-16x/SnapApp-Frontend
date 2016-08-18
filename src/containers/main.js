@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getSnaps } from '../actions';
 import Snap from '../components/snap.js';
+import { Link } from 'react-router';
 
 class Main extends Component {
 
@@ -11,24 +12,35 @@ class Main extends Component {
 
   render() {
     let receivedSnaps = 1;
+    let count = 0;
     let snaps = this.props.snaps.map((snap) => {
       receivedSnaps = 0;
-      return (
-        <Snap fromUser={snap.pictureURL} snapId={snap.id} key={snap.id} />
-      );
+      if (count === 0) {
+        count = 1;
+        return (
+          <Snap fromUser={snap.pictureURL} snapId={snap.id} key={snap.id} spec={'first'} />
+        );
+      } else {
+        return (
+          <Snap fromUser={snap.pictureURL} snapId={snap.id} key={snap.id} spec={'not-first'} />
+        );
+      }
     });
     if (receivedSnaps === 0) {
       // recieved snaps
       return (
-        <div id="recv-snaps">
+        <div>
           <h1 id="recv-snaps-title">NEW SNAPS</h1>
-          {snaps}
+          <div id="recv-snaps">
+            {snaps}
+          </div>
+          <div id="recv-snaps-end"></div>
         </div>
       );
     } else {
       // did not recieve any snaps
       return (
-        <div id="recv-snaps">
+        <div>
           <h1 id="recv-snaps-title">NO NEW SNAPS</h1>
         </div>
       );

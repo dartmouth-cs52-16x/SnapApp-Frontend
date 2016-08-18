@@ -35,10 +35,9 @@ const NavBar = () => {
             <i className="material-icons">exit_to_app</i>
           </Link>
         </li>
-        <li><div id="nav-bottom-title"><h1 id="nav-bottom-text">SnapApp &#9400;</h1></div></li>
       </ul>
     </div>
   );
 };
-
+// <li><div id="nav-bottom-title"><h1 id="nav-bottom-text">SnapApp &#9400;</h1></div></li>
 export default NavBar;
