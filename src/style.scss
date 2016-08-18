@@ -168,7 +168,7 @@ body {
   padding: 10px;
   background-color: white;
   margin-bottom: 0px;
-  width: 100%;
+  width: 80%;
 }
 
 .home-snap-full i {
@@ -279,6 +279,20 @@ body {
   margin-right: auto;
   margin-bottom: 50px;
   margin-top: 50px;
+}
+
+#ns-reset-div p, i {
+  padding: 0px;
+  margin: 0px;
+}
+
+#ns-reset-div {
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+  background-color: #0BB5FF;
+  width: 65px;
+  cursor: pointer;
 }
 
 #drop-zone-icon:active, #snapshot-icon:active {
