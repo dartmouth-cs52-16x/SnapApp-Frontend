@@ -15,30 +15,19 @@ class Settings extends Component {
 
   render() {
     return (
-      <div className="Settings">
-        <h1>Settings</h1>
-        <hr></hr>
-        <div id="UserInfo">
-          <div id="name">
-            Name: {this.state.fullname}
+      <div className="settings-top">
+        <div id="settings-header">SETTINGS</div>
+        <div className="settings">
+          <h1>Account Settings</h1>
+          <div className="list-holder-settings">
+            <ul className="settings-ul1">
+              <li>  NAME <span>{this.state.fullname}</span></li>
+              <li>  USERNAME <span>{this.state.username}</span></li>
+              <li>  PASSWORD <span>&#8226;</span></li>
+              <li>  PROFILE PICTURE <span><i className="material-icons">photo</i></span></li>
+            </ul>
+            <div id="settings-change-info">UPDATE INFO</div>
           </div>
-          <div id="username">
-            Username: {this.state.username}
-          </div>
-          <div id="email">
-            Email: {this.state.email}
-          </div>
-          <div id="password">
-            Password: {this.state.password}
-          </div>
-          <button>Edit Info</button>
-        </div>
-
-        <hr></hr>
-
-        <div id="Terms">
-          <p>Terms of Use</p>
-          <p>Privacy Policy</p>
         </div>
       </div>
     );

@@ -210,7 +210,7 @@ body {
 }
 
 #home-snap-p1 {
-  margin-top: -10px;
+  margin-top: -20px;
 }
 
 #home-snap-p1 i {
@@ -346,4 +346,155 @@ body {
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   color: #0BB5FF;
   background-color: rgba(0,0,0,0);
+}
+
+/* =============== PROFILE PAGE ============ */
+
+.profile-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile {
+  display: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 400px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile h1, h4 {
+  text-align: center;
+  margin-top: -20px;
+}
+
+.profile h4 {
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.profile li {
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  background-color: #0BB5FF;
+  margin-bottom: 5px;
+  list-style: none;
+}
+
+.profile span {
+  float: right;
+}
+
+.profile i {
+  vertical-align:middle;
+}
+
+.profile ul {
+  width: 100%;
+  padding-right: 40px;
+  margin-top: 0px;
+  display: inline-block;
+}
+
+.list-holder {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile-pic {
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 200px;
+}
+
+.profile img {
+    width: 200px;
+    height: auto;
+}
+
+#profile-header {
+  padding-right: 20px;
+  height: 50px;
+  margin-top: 40px;
+  display: inline-block;
+  font-weight: 100;
+  font-size: 14px;
+  margin-left: 50px;
+}
+
+/* ============== SETTINGS PAGE ============= */
+
+.settings-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.settings {
+  display: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 400px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.settings h1 {
+  text-align: center;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.settings li {
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  background-color: #0BB5FF;
+  margin-bottom: 5px;
+  list-style: none;
+}
+
+.settings span {
+  float: right;
+}
+
+.settings i {
+  vertical-align:middle;
+}
+
+.settings ul {
+  width: 100%;
+  padding-right: 40px;
+  margin-top: 0px;
+  display: inline-block;
+}
+
+.list-holder-settings {
+  display: flex;
+  flex-direction: column;
+}
+
+#settings-header {
+  padding-right: 20px;
+  height: 50px;
+  margin-top: 40px;
+  display: inline-block;
+  font-weight: 100;
+  font-size: 14px;
+  margin-left: 50px;
+}
+
+#settings-change-info {
+  float: left;
+  margin-left: 40px;
+  margin-bottom: 40px;
+  margin-right: 40px;
+  padding: 10px;
+  width: 125px;
+  cursor: pointer;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(255,0,0,0.7);
 }
