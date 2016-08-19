@@ -23,7 +23,6 @@ class CreateSnap extends Component {
     this.resetPage = this.resetPage.bind(this);
     this.screenshot = this.screenshot.bind(this);
     this.choseWebcam = this.choseWebcam.bind(this);
-    this.cancelWebcam = this.cancelWebcam.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.imageWasSet = this.imageWasSet.bind(this);
     this.onOpenClick = this.onOpenClick.bind(this);
@@ -48,6 +47,7 @@ class CreateSnap extends Component {
     // newArray.push(files);
     this.setState({
       files,
+      usingWebcam: 0,
       snapReady: 1,
     });
   }
@@ -63,16 +63,10 @@ class CreateSnap extends Component {
     });
   }
 
-  cancelWebcam() {
-    this.setState({
-      usingWebcam: 0,
-    });
-  }
-
   screenshot() {
     const screenshot = this.refs.webcam.getScreenshot();
     this.setState({
-      usingWebcam: 0,
+      usingWebcam: 1,
       snapReady: 1,
       screenshot,
     });
@@ -162,32 +156,54 @@ class CreateSnap extends Component {
       }
     } else {
       // snap ready to send
-      return (
-        <div className="NewSnap">
-          <div id="ns-header">SEND A SNAP</div>
-          <div onClick={this.resetPage} id="ns-reset-div">
-            <i className="material-icons">replay</i>
-            <p>RESET</p>
-          </div>
-          <div className="pic-to-send">
-            {this.state.screenshot ? <img alt="null" src={this.state.screenshot} /> : null}
-          </div>
-          {this.state.files.length > 0 ? <div className="pic-to-send">
-            <div id="pts-img">{this.state.files.map((file) =>
-              <img key={file.size} role="presentation" src={file.preview} width="300" />
-            )}
+      if (this.state.usingWebcam === 1) {
+        // using webcam
+        return (
+          <div className="NewSnap">
+            <div id="ns-header">SEND A SNAP</div>
+            <div onClick={this.resetPage} id="ns-reset-div">
+              <i className="material-icons">replay</i>
+              <p>RESET</p>
             </div>
-          </div> : null}
-          <div id="ns-text-send">
-            Send text (for testing): <input placeholder="Enter text here" value={this.state.pictureURL} onChange={this.imageWasSet} />
-          </div>
-          <div id="ns-submit">
-            <div>
-              <a onClick={this.onSubmit}>SEND</a>
+            <div className="pic-to-send">
+              {this.state.screenshot ? <img alt="null" src={this.state.screenshot} /> : null}
+            </div>
+            <div id="ns-text-send">
+              Send text (for testing): <input placeholder="Enter text here" value={this.state.pictureURL} onChange={this.imageWasSet} />
+            </div>
+            <div id="ns-submit">
+              <div>
+                <a onClick={this.onSubmit}>SEND</a>
+              </div>
             </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        // using upload
+        return (
+          <div className="NewSnap">
+            <div id="ns-header">SEND A SNAP</div>
+            <div onClick={this.resetPage} id="ns-reset-div">
+              <i className="material-icons">replay</i>
+              <p>RESET</p>
+            </div>
+            {this.state.files.length > 0 ? <div className="pic-to-send">
+              <div id="pts-img">{this.state.files.map((file) =>
+                <img key={file.size} role="presentation" src={file.preview} width="300" />
+              )}
+              </div>
+            </div> : null}
+            <div id="ns-text-send">
+              Send text (for testing): <input placeholder="Enter text here" value={this.state.pictureURL} onChange={this.imageWasSet} />
+            </div>
+            <div id="ns-submit">
+              <div>
+                <a onClick={this.onSubmit}>SEND</a>
+              </div>
+            </div>
+          </div>
+        );
+      }
     }
   }
 }
