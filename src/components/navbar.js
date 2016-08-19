@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { signoutUser } from '../actions';
+import { connect } from 'react-redux';
+
 
 class NavBar extends Component {
   constructor(props) {
@@ -39,7 +42,7 @@ class NavBar extends Component {
           </li>
           <li className="nav-list-element">
             <Link className="nav-list-link" to="/">
-              <i className="material-icons">exit_to_app</i>
+              <i className="material-icons">exit_to_app </i>
             </Link>
           </li>
           <li className="nav-list-element" id="nav-bottom">
@@ -51,4 +54,10 @@ class NavBar extends Component {
   }
 }
 // <li><div id="nav-bottom-title"><h1 id="nav-bottom-text">SnapApp &#9400;</h1></div></li>
-export default NavBar;
+const mapStateToProps = (state) => (
+  {
+    authenticated: state.auth.authenticated,
+  }
+);
+
+export default connect(mapStateToProps, { signoutUser })(NavBar);

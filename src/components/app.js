@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import NavBar from './navbar.js';
+import Login from './login.js';
+import { connect } from 'react-redux';
+
 
 // example class based component (smart component)
 class App extends Component {
@@ -11,18 +13,34 @@ class App extends Component {
     this.state = {};
   }
 
+
   render() {
-    return (
-      <div id="full">
-        <div id="layout">
-          <NavBar />
-          {this.props.children}
+    console.log(`AUTHENTICATED: ${this.props.authenticated}`);
+    if (this.props.authenticaed === false) {
+      return (
+        <div id="login">
+          <Login />
         </div>
-        <div id="content">
+      );
+    } else {
+      return (
+        <div id="full">
+          <div id="layout">
+            <NavBar />
+            {this.props.children}
+          </div>
+          <div id="content">
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
-export default App;
+const mapStateToProps = (state) => (
+  {
+    authenticated: state.auth.authenticated,
+  }
+);
+
+export default connect(mapStateToProps, null)(App);
