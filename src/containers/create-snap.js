@@ -39,10 +39,20 @@ class CreateSnap extends Component {
     }
     const sentFrom = 'fromUserID';
     const sentTo = 'toUserID';
-    this.props.createSnap({ pictureURL, sentFrom, sentTo });
+    this.props.createSnap({ pictureURL, sentFrom, sentTo, file: this.state.pic });
   }
 
   onDrop(files) {
+    const reader = new FileReader();
+    reader.onload = function fd(e) {
+      console.log(e.target.result);
+    };
+    reader.onerror = function asdf(stuff) {
+      console.log('error', stuff);
+      console.log(stuff.getMessage());
+    };
+    reader.readAsDataURL(files[0]);
+
     // const newArray = this.state.files.slice();
     console.log('Received files: ', files);
     // newArray.push(files);
