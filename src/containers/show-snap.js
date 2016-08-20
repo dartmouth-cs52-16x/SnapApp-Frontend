@@ -3,6 +3,7 @@ import { getSnap, deleteSnap } from '../actions/index';
 import { connect } from 'react-redux';
 import Timer from 'react.timer';
 import Timers from 'react-timers';
+import jQuery from 'jquery';
 
 class ShowSnap extends Component {
   mixins: [Timers]
@@ -11,9 +12,9 @@ class ShowSnap extends Component {
     super(props);
 
     this.state = {
-      pictureURL: '',
       sentFrom: '',
       sentTo: '',
+      src: '',
     };
   }
 
@@ -25,15 +26,20 @@ class ShowSnap extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.deleteSnap(this.props.params.id);
-    }, 4000);
+    }, 10000);
   }
 
   componentWillReceiveProps(props) {
     if (props.snap) {
       this.setState({
-        pictureURL: props.snap.pictureURL,
         sentFrom: props.snap.sentFrom,
         sentTo: props.snap.sentTo,
+      });
+      jQuery.get(props.snap.pictureURL, (data) => {
+        console.log('THIS IS THE DAT', data);
+        this.setState({
+          src: data,
+        });
       });
     }
   }
@@ -42,7 +48,8 @@ class ShowSnap extends Component {
     return (
       <div id="show-snap-full">
         <div id="show-snap-box">
-          <h1>Snap from {this.state.pictureURL}</h1>
+          <h1>Snap from {this.state.sentFrom}</h1>
+          <img role="presentation" src={this.state.src} />
         </div>
         <Timer countDown startTime={4} />
       </div>

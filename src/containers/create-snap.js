@@ -17,7 +17,7 @@ class CreateSnap extends Component {
       files: [],
       usingWebcam: 0,
       snapReady: 0,
-      pic: [],
+      pic: '',
     };
 
     this.resetPage = this.resetPage.bind(this);
@@ -28,6 +28,8 @@ class CreateSnap extends Component {
     this.onOpenClick = this.onOpenClick.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.retakePic = this.retakePic.bind(this);
+    this.test = this.test.bind(this);
+    this.callback = this.callback.bind(this);
   }
 
   onSubmit() {
@@ -42,15 +44,30 @@ class CreateSnap extends Component {
     this.props.createSnap({ pictureURL, sentFrom, sentTo, file: this.state.pic });
   }
 
+  test(data) {//  eslint-disable-line
+    this.setState({
+      pic: data,
+    });
+  }
+
+  callback(data) {
+    console.log('storing all the data');
+
+    this.setState({
+      pic: data.target.result,
+    });
+  }
+
   onDrop(files) {
     const reader = new FileReader();
-    reader.onload = function fd(e) {
-      console.log(e.target.result);
-    };
+    reader.onload = this.callback;
+
+
     reader.onerror = function asdf(stuff) {
       console.log('error', stuff);
       console.log(stuff.getMessage());
     };
+
     reader.readAsDataURL(files[0]);
 
     // const newArray = this.state.files.slice();
@@ -58,7 +75,6 @@ class CreateSnap extends Component {
     // newArray.push(files);
     console.log('first is ', files[0]);
     this.setState({
-      pic: files[0],
       usingWebcam: 0,
       snapReady: 1,
     });
@@ -68,6 +84,7 @@ class CreateSnap extends Component {
   onOpenClick() {
     this.refs.dropzone.open();
   }
+
 
   retakePic() {
     this.setState({
@@ -182,7 +199,7 @@ class CreateSnap extends Component {
               <p>RESET</p>
             </div>
             <div className="pic-to-send">
-              {this.state.pic ? <img alt="null" src={this.state.pic.preview} /> : null}
+              {this.state.pic ? <img alt="null" src={this.state.pic} /> : null}
             </div>
             <div id="ns-text-outer">
               <div id="ns-text-send">
