@@ -24,12 +24,13 @@ class CreateSnap extends Component {
     this.snapshot = this.snapshot.bind(this);
     this.choseWebcam = this.choseWebcam.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.imageWasSet = this.imageWasSet.bind(this);
+    this.imageCaptionWasSet = this.imageCaptionWasSet.bind(this);
     this.onOpenClick = this.onOpenClick.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.retakePic = this.retakePic.bind(this);
     this.test = this.test.bind(this);
     this.callback = this.callback.bind(this);
+    this.snapSentToSet = this.snapSentToSet.bind(this);
   }
 
   onSubmit() {
@@ -40,7 +41,7 @@ class CreateSnap extends Component {
       pictureURL = this.state.caption;
     }
     const sentFrom = 'fromUserID';
-    const sentTo = 'toUserID';
+    const sentTo = this.state.sentTo;
     this.props.createSnap({ pictureURL, sentFrom, sentTo, file: this.state.pic });
   }
 
@@ -108,9 +109,15 @@ class CreateSnap extends Component {
     });
   }
 
-  imageWasSet(event) {
+  imageCaptionWasSet(event) {
     this.setState({
       caption: event.target.value,
+    });
+  }
+
+  snapSentToSet(event) {
+    this.setState({
+      sentTo: event.target.value,
     });
   }
 
@@ -179,8 +186,11 @@ class CreateSnap extends Component {
             </div>
             <div id="ns-text-outer">
               <div id="ns-text-send">
-                Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageWasSet} /> <span>*optional</span>
+                Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageCaptionWasSet} /> <span>*optional</span>
               </div>
+            </div>
+            <div id="ns-text-send">
+              Send to who? <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} /> <span>*optional</span>
             </div>
             <div id="ns-submit">
               <div>
@@ -205,6 +215,9 @@ class CreateSnap extends Component {
               <div id="ns-text-send">
                 Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageWasSet} /> <span>*optional</span>
               </div>
+            </div>
+            <div id="ns-text-send">
+              Send to who? <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} /> <span>*optional</span>
             </div>
             <div id="ns-submit">
               <div>
