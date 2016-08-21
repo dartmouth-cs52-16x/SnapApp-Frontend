@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { signoutUser } from '../actions';
+import { connect } from 'react-redux';
+
 
 class NavBar extends Component {
   constructor(props) {
@@ -18,7 +21,7 @@ class NavBar extends Component {
             </Link>
           </li>
           <li className="nav-list-element">
-            <Link className="nav-list-link" to="/">
+            <Link className="nav-list-link" to="/snaps">
               <i className="material-icons">chat</i>
             </Link>
           </li>
@@ -39,16 +42,20 @@ class NavBar extends Component {
           </li>
           <li className="nav-list-element">
             <Link className="nav-list-link" to="/">
-              <i className="material-icons">exit_to_app</i>
+              <i onClick={this.props.signoutUser} className="material-icons">exit_to_app</i>
             </Link>
-          </li>
-          <li className="nav-list-element" id="nav-bottom">
-            <Link className="nav-list-link" to="" />
           </li>
         </ul>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    snaps: state.snaps.all,
+  };
+}
+
 // <li><div id="nav-bottom-title"><h1 id="nav-bottom-text">SnapApp &#9400;</h1></div></li>
-export default NavBar;
+export default connect(mapStateToProps, { signoutUser })(NavBar);
