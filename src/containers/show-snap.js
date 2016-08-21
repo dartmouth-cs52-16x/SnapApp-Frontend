@@ -36,7 +36,7 @@ class ShowSnap extends Component {
         sentTo: props.snap.sentTo,
       });
       jQuery.get(props.snap.pictureURL, (data) => {
-        console.log('THIS IS THE DAT', data);
+        console.log('THIS IS THE DATA', data);
         this.setState({
           src: data,
         });
@@ -51,7 +51,7 @@ class ShowSnap extends Component {
           <h1>Snap from {this.state.sentFrom}</h1>
           <img role="presentation" src={this.state.src} />
         </div>
-        <Timer countDown startTime={4} />
+        <Timer countDown startTime={10} />
       </div>
     );
   }

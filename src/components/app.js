@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 import NavBar from './navbar.js';
+import { connect } from 'react-redux';
+import SplashPage from './splash.js';
+// import SignUp from '../containers/sign-up';
+// import SignIn from '../containers/sign-in';
+
 
 // example class based component (smart component)
 class App extends Component {
@@ -12,17 +17,41 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div id="full">
-        <div id="layout">
-          <NavBar />
+    let main;
+    if (this.props.auth) {
+      console.log('user is authed, display snaps');
+      main = (
+        <div id="full">
+          <div id="layout">
+            <NavBar />
+            {this.props.children}
+          </div>
+          <div id="content">
+          </div>
+        </div>
+      );
+    } else {
+      console.log('not authed, display signup/in');
+      main = (
+        <div>
+          <SplashPage />
           {this.props.children}
         </div>
-        <div id="content">
-        </div>
+      );
+    }
+
+    return (
+      <div id="full">
+        {main}
       </div>
     );
   }
 }
 
-export default App;
+
+const mapStateToProps = (state) => ({
+  auth: state.auth.authenticated,
+});
+
+
+export default connect(mapStateToProps, null)(App);
