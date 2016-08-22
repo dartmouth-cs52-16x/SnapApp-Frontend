@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { getSnap, deleteSnap } from '../actions/index';
 import { connect } from 'react-redux';
 import Timer from 'react.timer';
-import Timers from 'react-timers';
 import jQuery from 'jquery';
 
 class ShowSnap extends Component {
-  mixins: [Timers]
 
   constructor(props) {
     super(props);
@@ -14,7 +12,7 @@ class ShowSnap extends Component {
     this.state = {
       sentFrom: '',
       sentTo: '',
-      src: '',
+      src: null,
     };
   }
 
@@ -23,11 +21,11 @@ class ShowSnap extends Component {
     this.props.getSnap(this.props.params.id);
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.props.deleteSnap(this.props.params.id);
-    }, 10000);
-  }
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.props.deleteSnap(this.props.params.id);
+  //   }, 10000);
+  // }
 
   componentWillReceiveProps(props) {
     if (props.snap) {
@@ -40,20 +38,34 @@ class ShowSnap extends Component {
         this.setState({
           src: data,
         });
+        setTimeout(() => {
+          this.props.deleteSnap(this.props.params.id);
+        }, 10000);
       });
     }
   }
 
   render() {
-    return (
-      <div id="show-snap-full">
-        <div id="show-snap-box">
-          <h1>Snap from {this.state.sentFrom}</h1>
-          <img role="presentation" src={this.state.src} />
+    if (this.state.src) {
+      return (
+        <div id="show-snap-full">
+          <div id="show-snap-box">
+            <h1>Snap from {this.state.sentFrom}</h1>
+            <img role="presentation" src={this.state.src} />
+          </div>
+          <Timer countDown startTime={10} />
         </div>
-        <Timer countDown startTime={10} />
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div id="show-snap-full">
+          <div id="show-snap-box">
+            <h1>Snap from {this.state.sentFrom}</h1>
+            <h2> LOADING </h2>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
