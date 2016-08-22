@@ -597,30 +597,6 @@ body {
 }
 
 
-<div className="Sign-Up">
-  <h1> Sign Up!!! </h1>
-
-  <div id="email">
-    <input placeholder="Enter your email" value={this.state.email} onChange={this.emailWasChanged} />
-  </div>
-  <div id="password">
-    <input placeholder="Enter your password" value={this.state.password} onChange={this.passwordWasChanged} />
-  </div>
-  <div id="username">
-    <input placeholder="Enter your username" value={this.state.username} onChange={this.usernameWasChanged} />
-  </div>
-
-  <div id="buttons">
-    <div id="signup" onClick={this.signUserUp}>
-      Sign Up
-    </div>
-    <div id="cancel">
-      <Link to="/">Cancel</Link>
-    </div>
-  </div>
-</div>
-
-
 /* ========== SIGN IN ========= */
 
 #timer {
