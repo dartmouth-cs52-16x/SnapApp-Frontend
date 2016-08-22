@@ -549,8 +549,84 @@ body {
   background-color: rgba(255,0,0,0.7);
 }
 
+<<<<<<< HEAD
+
+/* ============== GROUPS PAGE ============= */
+
+.group-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.groups {
+  display: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 400px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.groups h1 {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.groups li {
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  background-color: #0BB5FF;
+  margin-bottom: 5px;
+  list-style: none;
+}
+
+.groups span {
+  float: right;
+}
+
+.groups i {
+  vertical-align:middle;
+}
+
+.groups ul {
+  width: 100%;
+  padding-right: 40px;
+  margin-top: 0px;
+  display: inline-block;
+}
+
+.groups-holder-settings {
+  display: flex;
+  flex-direction: column;
+}
+
+#groups-header {
+  padding-right: 20px;
+  height: 50px;
+  margin-top: 40px;
+  display: inline-block;
+  font-weight: 100;
+  font-size: 14px;
+  margin-left: 50px;
+}
+
+#groups-change-info {
+  float: left;
+  margin-left: 40px;
+  margin-bottom: 40px;
+  margin-right: 40px;
+  padding: 10px;
+  width: 125px;
+  cursor: pointer;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(255,0,0,0.7);
+=======
 /* ========== OPENED SNAP VIEW ========= */
 
 #timer {
   font-size: 80px;
+>>>>>>> deec8d4c18bae63d09426d8214e4ec6a1ec515b4
 }
