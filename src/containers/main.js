@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getSnaps } from '../actions';
 import Snap from '../components/snap.js';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 
 class Main extends Component {
 
   componentWillMount() {
-    this.props.getSnaps();
+    console.log('component will mount user', this.props.user);
+    this.props.getSnaps('asdf');
+  }
+
+  componentWillReceiveProps(props) {
+    console.log('component will receive props user', props.user);
+    this.props.getSnaps('asdf');
   }
 
   render() {
@@ -18,11 +24,11 @@ class Main extends Component {
       if (count === 0) {
         count = 1;
         return (
-          <Snap fromUser={snap.pictureURL} snapId={snap.id} key={snap.id} spec={'first'} />
+          <Snap fromUser={snap.sentFrom} snapId={snap.id} key={snap.id} spec={'first'} />
         );
       } else {
         return (
-          <Snap fromUser={snap.pictureURL} snapId={snap.id} key={snap.id} spec={'not-first'} />
+          <Snap fromUser={snap.sentFrom} snapId={snap.id} key={snap.id} spec={'not-first'} />
         );
       }
     });
@@ -51,6 +57,7 @@ class Main extends Component {
 function mapStateToProps(state) {
   return {
     snaps: state.snaps.all,
+    user: state.auth.email,
   };
 }
 

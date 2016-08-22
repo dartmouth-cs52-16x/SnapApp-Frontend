@@ -16,7 +16,7 @@ const Snap = (props) => {
         </Link>
         <div className="home-snap-link-div">
           <p id="home-snap-p1">Received from {props.fromUser}</p>
-          <p><Time value={now} format="HH:mm" /> PM</p>
+          <p><Time value={now} format="HH:mm" /> EST</p>
         </div>
       </div>
     );
@@ -31,7 +31,7 @@ const Snap = (props) => {
         </Link>
         <div className="home-snap-link-div">
           <p id="home-snap-p1">Received from {props.fromUser}</p>
-          <p><Time value={now} format="HH:mm" /> PM</p>
+          <p><Time value={now} format="HH:mm" /> EST</p>
         </div>
       </div>
     );

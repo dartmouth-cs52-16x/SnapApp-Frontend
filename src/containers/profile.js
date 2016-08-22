@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { getUserObject } from '../actions';
+import { connect } from 'react-redux';
 
 
 class Profile extends Component {
@@ -15,6 +17,10 @@ class Profile extends Component {
       streak: 23,
       groups: 5,
     };
+  }
+
+  componentWillMount() {
+    this.props.getUserObject();
   }
 
   render() {
@@ -41,4 +47,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default connect(null, { getUserObject })(Profile);
