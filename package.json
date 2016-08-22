@@ -44,11 +44,8 @@
   },
   "dependencies": {
     "axios": "^0.13.1",
-<<<<<<< HEAD
     "moment": "^2.14.1",
-=======
     "jquery": "^3.1.0",
->>>>>>> deec8d4c18bae63d09426d8214e4ec6a1ec515b4
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-dropzone": "^3.5.3",
@@ -57,12 +54,9 @@
     "react-router": "^2.5.2",
     "react-time": "^4.2.0",
     "react-timer": "^1.0.1",
-<<<<<<< HEAD
     "react-timers": "^5.0.0",
     "react.timer": "^2.1.0",
-=======
     "react-webcam": "0.0.14",
->>>>>>> deec8d4c18bae63d09426d8214e4ec6a1ec515b4
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
   }
