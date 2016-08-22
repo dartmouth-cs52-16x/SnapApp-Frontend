@@ -12,7 +12,22 @@ export const ActionTypes = {
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
+  GET_USER: 'GET_USER',
 };
+
+export function getUserObject() {
+  console.log('getting user');
+  return (dispatch) => {
+    axios.post(`${BASE_URL}/profile/`, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
+      dispatch({
+        type: ActionTypes.GET_USER,
+        payload: response.data,
+      }).catch((error) => {
+        console.log(error);
+      });
+    });
+  };
+}
 
 export function createSnap(fields) {
   console.log(fields);
