@@ -56,7 +56,7 @@ class Splash extends Component {
       return (
         <div className="bth-div">
           <Link id="back-to-home" to="/" onClick={this.showDisplay}>
-            <div><i className="material-icons">backspace</i> Back To Home</div>
+            <div><i className="material-icons">keyboard_backspace</i> Back To Home</div>
           </Link>
         </div>
       );

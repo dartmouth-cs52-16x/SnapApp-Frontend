@@ -196,8 +196,10 @@ class CreateSnap extends Component {
                 Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageCaptionWasSet} /> <span>*optional</span>
               </div>
             </div>
-            <div id="ns-text-send">
-              Send to who? <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} /> <span>*optional</span>
+            <div id="ns-caption-outer">
+              <div id="ns-caption-send">
+                Recipient: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} />
+              </div>
             </div>
             <div id="ns-submit">
               <div>
@@ -220,11 +222,13 @@ class CreateSnap extends Component {
             </div>
             <div id="ns-text-outer">
               <div id="ns-text-send">
-                Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageWasSet} /> <span>*optional</span>
+                Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageCaptionWasSet} /> <span>*optional</span>
               </div>
             </div>
-            <div id="ns-text-send">
-              Send to who? <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} /> <span>*optional</span>
+            <div id="ns-caption-outer">
+              <div id="ns-caption-send">
+                Recipient: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} />
+              </div>
             </div>
             <div id="ns-submit">
               <div>
