@@ -13,7 +13,7 @@ class Profile extends Component {
       email: '',
       profilePictureURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
       snapScore: 71,
-      topFriendName: 'Rajiv Ramaiah',
+      topFriendName: 'None',
       streak: 23,
       groups: 5,
     };
@@ -22,6 +22,25 @@ class Profile extends Component {
   componentWillMount() {
     console.log('getting user object');
     this.props.getUserObject();
+  }
+
+  componentWillReceiveProps(props) {
+    console.log('PROPS friend ', props.user);
+    let max = 0;
+    let topFriend;
+    if (props.user.friends.length > 0) {
+      for (let i = 0; i < props.user.friends.length; i++) {
+        if (props.user.friends[i].score > max) {
+          max = props.user.friends[i].score;
+          topFriend = props.user.friends[i].name;
+        }
+      }
+    } else {
+      topFriend = 'No Friends';
+    }
+    this.setState({
+      topFriendName: topFriend,
+    });
   }
 
   render() {

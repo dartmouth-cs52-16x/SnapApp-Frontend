@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { createSnap, getUserObject } from '../actions/index.js';
+import { createSnap, getUserObject, checkUserExists } from '../actions/index.js';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import Webcam from 'react-webcam';
@@ -36,6 +36,7 @@ class CreateSnap extends Component {
     this.callback = this.callback.bind(this);
     this.snapSentToSet = this.snapSentToSet.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.checkSentTo = this.checkSentTo.bind(this);
   }
 
   componentWillMount() {
@@ -145,6 +146,10 @@ class CreateSnap extends Component {
     });
   }
 
+  checkSentTo() {
+    this.props.checkUserExists({ sentTo: this.state.sentTo });
+  }
+
   render() {
     if (this.state.snapReady === 0) {
       // snap not ready to send
@@ -195,6 +200,7 @@ class CreateSnap extends Component {
               <i className="material-icons">replay</i>
               <p>RESET</p>
             </div>
+<<<<<<< HEAD
 
             <div className="form">
               <div className="ssf-inner">
@@ -271,4 +277,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { createSnap, getUserObject })(CreateSnap);
+export default connect(mapStateToProps, { createSnap, getUserObject, checkUserExists })(CreateSnap);
