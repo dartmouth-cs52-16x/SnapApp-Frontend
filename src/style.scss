@@ -23,6 +23,10 @@ body {
   display: flex;
   flex-direction: column;
 }
+.content-row {
+  display: flex;
+  flex-direction: row;
+}
 
 #layout {
   width: 100%;
