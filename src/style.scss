@@ -42,7 +42,6 @@ body {
 }
 
 .NavBar {
-  position: fixed;
   float: left;
   margin-left: 0px;
   background-color: rgba(0, 0, 0, 0.85);
@@ -673,10 +672,8 @@ body {
 /* ============= SIGN UP BUTTON =========== */
 
 #splash-signup {
-  display: flex;
-  flex-direction: column;
   background-color: rgba(1, 1, 1, 0.3);
-  height: 143px;
+  height: 148px;
   width: 330px;
   border-radius: 5px;
   margin-right: auto;

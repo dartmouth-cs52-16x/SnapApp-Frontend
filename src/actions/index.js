@@ -81,7 +81,6 @@ export function deleteSnap(id) {
         type: ActionTypes.DELETE_SNAP,
         payload: null,
       });
-      browserHistory.push('/snaps');
     }).catch((error) => {
       console.log('Error deleting snap by ID!!!');
     });
