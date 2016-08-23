@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { createSnap } from '../actions/index.js';
+import { createSnap, getUserObject, checkUserExists } from '../actions/index.js';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import Webcam from 'react-webcam';
+import { browserHistory } from 'react-router';
+
 /* adapted from https://www.npmjs.com/package/webcam-capture */
 /* webcam!! */
 
@@ -31,6 +33,11 @@ class CreateSnap extends Component {
     this.test = this.test.bind(this);
     this.callback = this.callback.bind(this);
     this.snapSentToSet = this.snapSentToSet.bind(this);
+    this.checkSentTo = this.checkSentTo.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.getUserObject();
   }
 
   onSubmit() {
@@ -40,9 +47,10 @@ class CreateSnap extends Component {
     } else {
       pictureURL = this.state.caption;
     }
-    const sentFrom = 'fromUserID';
+    const sentFrom = this.props.user.username;
     const sentTo = this.state.sentTo;
     this.props.createSnap({ pictureURL, sentFrom, sentTo, file: this.state.pic });
+    browserHistory.push('/snaps');
   }
 
   test(data) {//  eslint-disable-line
@@ -130,6 +138,10 @@ class CreateSnap extends Component {
     });
   }
 
+  checkSentTo() {
+    this.props.checkUserExists({ sentTo: this.state.sentTo });
+  }
+
   render() {
     if (this.state.snapReady === 0) {
       // snap not ready to send
@@ -189,8 +201,10 @@ class CreateSnap extends Component {
                 Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageCaptionWasSet} /> <span>*optional</span>
               </div>
             </div>
-            <div id="ns-text-send">
-              Send to who? <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} /> <span>*optional</span>
+            <div id="ns-caption-outer">
+              <div id="ns-caption-send">
+                Recipient Username: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onBlur={this.checkSentTo} onChange={this.snapSentToSet} />
+              </div>
             </div>
             <div id="ns-submit">
               <div>
@@ -213,11 +227,13 @@ class CreateSnap extends Component {
             </div>
             <div id="ns-text-outer">
               <div id="ns-text-send">
-                Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageWasSet} /> <span>*optional</span>
+                Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageCaptionWasSet} /> <span>*optional</span>
               </div>
             </div>
-            <div id="ns-text-send">
-              Send to who? <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} /> <span>*optional</span>
+            <div id="ns-caption-outer">
+              <div id="ns-caption-send">
+                Recipient Username: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onBlur={this.checkSentTo} onChange={this.snapSentToSet} />
+              </div>
             </div>
             <div id="ns-submit">
               <div>
@@ -231,4 +247,11 @@ class CreateSnap extends Component {
   }
 }
 
-export default connect(null, { createSnap })(CreateSnap);
+function mapStateToProps(state) {
+  return {
+    user: state.user.user,
+  };
+}
+
+
+export default connect(mapStateToProps, { createSnap, getUserObject, checkUserExists })(CreateSnap);

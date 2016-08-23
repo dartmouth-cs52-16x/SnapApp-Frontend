@@ -15,22 +15,38 @@ export const ActionTypes = {
   GET_USER: 'GET_USER',
 };
 
-export function getUserObject() {
-  console.log('getting user');
+export function checkUserExists(fields) {
+  console.log(fields);
   return (dispatch) => {
-    axios.post(`${BASE_URL}/profile/`, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
+    axios.get(`${BASE_URL}/user/`, fields, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
+      console.log(response);
       dispatch({
         type: ActionTypes.GET_USER,
         payload: response.data,
-      }).catch((error) => {
-        console.log(error);
       });
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+}
+
+export function getUserObject() {
+  console.log('getting user');
+  return (dispatch) => {
+    axios.get(`${BASE_URL}/profile/`, { headers: { authorization: localStorage.getItem('token') } })
+    .then((response) => {
+      console.log(response);
+      dispatch({
+        type: ActionTypes.GET_USER,
+        payload: response.data,
+      });
+    }).catch((error) => {
+      console.log(error);
     });
   };
 }
 
 export function createSnap(fields) {
-  console.log(fields);
   return (dispatch) => {
     axios.post(`${BASE_URL}/snaps/`, fields, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
       dispatch({
@@ -44,7 +60,7 @@ export function createSnap(fields) {
   };
 }
 
-export function getSnaps(email) {
+export function getSnaps() {
   return (dispatch) => {
     axios.get(`${BASE_URL}/snaps`, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
       console.log('GET SNAPS DATA', response.data);
@@ -108,7 +124,7 @@ export function authError(error) {
   };
 }
 
-export function signinUser({ email, password }) {
+export function signinUser({ username, password }) {
   // takes in an object with email and password (minimal user object)
   // returns a thunk method that takes dispatch as an argument (just like our create post method really)
   // does an axios.post on the /signin endpoint
@@ -118,13 +134,12 @@ export function signinUser({ email, password }) {
   // on error should dispatch(authError(`Sign In Failed: ${error.response.data}`));
 
   return (dispatch) => {
-    axios.post(`${BASE_URL}/signin/`, { email, password }).then(response => {
-      console.log(response);
+    axios.post(`${BASE_URL}/signin/`, { username, password }).then(response => {
+      console.log('SIGNIN RESPONSE', response);
       console.log('sign in called');
-      console.log(email);
       dispatch({
         type: ActionTypes.AUTH_USER,
-        payload: email,
+        payload: username,
       });
       localStorage.setItem('token', response.data.token);
       browserHistory.push('/snaps');
@@ -151,7 +166,7 @@ export function signupUser({ email, password, username }) {
 
       dispatch({
         type: ActionTypes.AUTH_USER,
-        payload: email,
+        payload: username,
       });
       localStorage.setItem('token', response.data.token);
       browserHistory.push('/snaps');

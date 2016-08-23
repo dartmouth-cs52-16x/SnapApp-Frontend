@@ -14,6 +14,8 @@ body {
 }
 
 #full {
+  height: 100%;
+  width: 100%;
   display: flex;
 }
 
@@ -24,7 +26,10 @@ body {
 
 #layout {
   width: 100%;
-  margin-right: 200px;
+}
+
+#main {
+  height: 100%;
 }
 
 /* =============== LEFT SIDE NAV BAR ================ */
@@ -291,6 +296,33 @@ body {
   font-size: 20px;
 }
 
+#ns-caption-send {
+  border: 4px solid white;
+  text-align: center;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 35px;
+  background-color: #0BB5FF;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+}
+
+#ns-caption-outer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(1, 1, 1, 0.3);
+  height: 126px;
+  width: 430px;
+  border-radius: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 #ns-text-outer {
   display: flex;
   flex-direction: column;
@@ -336,8 +368,14 @@ body {
 }
 
 .pic-to-send {
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 10px;
-  text-align: center;
+  width: 500px;
+}
+
+.pic-to-send img {
+  width: 500px;
 }
 
 #pts-img {
@@ -555,6 +593,7 @@ body {
   font-size: 80px;
 }
 
+<<<<<<< HEAD
 
 /* ========== SIGN UP / SIGN IN========= */
 
@@ -605,4 +644,169 @@ body {
 
 #timer {
   font-size: 80px;
+=======
+/* ========== SPLASH PAGE ============= */
+
+.bth-div {
+  margin-top: 50px;
+  margin-left: 50px;
+  vertical-align: middle;
+  border-radius: 5px;
+  background-color: #0BB5FF;
+  width: 160px;
+  height: 50px;
+}
+
+#back-to-home {
+  display: block;
+  padding: 5px;
+  color: white;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+#back-to-home div {
+  position: relative;
+  padding-top: 8px;
+}
+
+#back-to-home div i {
+  height: 100%;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+#back-to-home:hover {
+  border: none;
+  background-color: rgba(0,0,0,0);
+}
+
+.SplashPage {
+  width: 100%;
+  height: 100%;
+}
+
+#splash-title {
+  height: 220px;
+  font-family: 'Baloo Tamma', 'Helvetica Neue';
+  font-size: 80px;
+  margin-top: 20px;
+}
+
+#splash-title h1 {
+  margin: 0;
+}
+
+.splash-full {
+  height: 100%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+#splash-signin {
+  margin-top: 30px;
+}
+
+#splash-logo img {
+  margin-top: 50px;
+  border-radius: 50%;
+  width: 180px;
+  length: 180px;
+}
+
+.SignUp {
+  width: 300px;
+}
+
+/* ============= SIGN UP BUTTON =========== */
+
+#splash-signup {
+  background-color: rgba(1, 1, 1, 0.3);
+  height: 148px;
+  width: 330px;
+  border-radius: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 40px;
+}
+
+#splash-signup div {
+  font-family: 'Arial';
+  width: 251px;
+  border: white solid 4px;
+  cursor: pointer;
+  background-color: #0BB5FF;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#splash-signup a {
+  border: none;
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+#splash-signup div:hover {
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  background-color: white;
+}
+
+#splash-signup div:hover a {
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  color: #0BB5FF;
+  background-color: rgba(0,0,0,0);
+}
+
+/* ========== SIGN UP PAGE ============ */
+
+.Sign {
+  margin-bottom: 100px;
+}
+
+.sui-inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0.7);
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.sui-inner input {
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  width: 300px;
+  height: 40px;
+  padding: 5px;
+  margin: 5px;
+  font-size: 16px;
+  font-family: "Work Sans", sans-serif;
+}
+
+.submit-in-sui {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.Sign h1 {
+  font-size: 50px;
+>>>>>>> 310f77fcdd5b2729de5ce3d8e329765f7ee1cd70
 }

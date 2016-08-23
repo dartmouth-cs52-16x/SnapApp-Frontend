@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signinUser } from '../actions';
-import { Link } from 'react-router';
+
 
 class SignIn extends Component {
   constructor() {
     super();
 
     this.state = {
-      email: '',
+      username: '',
       password: '',
     };
 
-    this.emailWasChanged = this.emailWasChanged.bind(this);
+    this.usernameWasChanged = this.usernameWasChanged.bind(this);
     this.passwordWasChanged = this.passwordWasChanged.bind(this);
     this.signUserIn = this.signUserIn.bind(this);
   }
 
-  emailWasChanged(event) {
+  usernameWasChanged(event) {
     this.setState({
-      email: event.target.value,
+      username: event.target.value,
     });
   }
 
@@ -31,28 +31,27 @@ class SignIn extends Component {
 
   signUserIn() {
     this.props.signinUser({
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password,
     });
   }
 
   render() {
     return (
-      <div className="Sign-In">
-        <h1> Sign In! </h1>
-        <div id="email">
-          <input placeholder="Enter your email" value={this.state.email} onChange={this.emailWasChanged} />
-        </div>
-        <div id="password">
-          <input placeholder="Enter your password" value={this.state.password} onChange={this.passwordWasChanged} />
-        </div>
-
-        <div id="buttons">
-          <div id="signin" onClick={this.signUserIn}>
-            Sign In
+      <div className="Sign">
+        <div className="sui-inner">
+          <h1>SIGN IN</h1>
+          <div id="email">
+            <input placeholder="Username" value={this.state.username} onChange={this.usernameWasChanged} />
           </div>
-          <div id="cancel">
-            <Link to="/">Cancel</Link>
+          <div id="password">
+            <input placeholder="Password" type="password" value={this.state.password} onChange={this.passwordWasChanged} />
+          </div>
+
+          <div id="splash-signup" className="submit-in-sui">
+            <div>
+              <a onClick={this.signUserIn}>SUBMIT</a>
+            </div>
           </div>
         </div>
       </div>

@@ -8,22 +8,43 @@ class Profile extends Component {
     super(props);
 
     this.state = {
-      fullname: 'Placeholder Name',
-      username: 'Placeholder Username',
-      email: 'Placeholder Email',
+      fullname: '',
+      username: '',
+      email: '',
       profilePictureURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
       snapScore: 71,
-      topFriendName: 'Rajiv Ramaiah',
+      topFriendName: 'None',
       streak: 23,
       groups: 5,
     };
   }
 
   componentWillMount() {
+    console.log('getting user object');
     this.props.getUserObject();
   }
 
+  componentWillReceiveProps(props) {
+    console.log('PROPS friend ', props.user);
+    let max = 0;
+    let topFriend;
+    if (props.user.friends.length > 0) {
+      for (let i = 0; i < props.user.friends.length; i++) {
+        if (props.user.friends[i].score > max) {
+          max = props.user.friends[i].score;
+          topFriend = props.user.friends[i].name;
+        }
+      }
+    } else {
+      topFriend = 'No Friends';
+    }
+    this.setState({
+      topFriendName: topFriend,
+    });
+  }
+
   render() {
+    console.log(this.props.user);
     return (
       <div className="profile-top">
         <div id="profile-header">PROFILE</div>
@@ -31,13 +52,12 @@ class Profile extends Component {
           <div id="profile-pic">
             <img src={this.state.profilePictureURL} alt="null" className="nav-user-img" />
           </div>
-          <h1>{this.state.fullname}</h1>
-          <h4>{this.state.username}</h4>
+          <h1>{this.props.user.username}</h1>
+          <h4>{this.props.user.email}</h4>
           <div className="list-holder">
             <ul className="profile-ul1">
-              <li><i className="material-icons">star</i>  SNAP SCORE <span>{this.state.snapScore}</span></li>
+              <li><i className="material-icons">star</i>  SNAP SCORE <span>{this.props.user.snapScore}</span></li>
               <li><i className="material-icons">person_pin</i>  TOP FRIEND <span>{this.state.topFriendName}</span></li>
-              <li><i className="material-icons">trending_up</i>  LONGEST STREAK <span>{this.state.streak}</span></li>
               <li><i className="material-icons">group</i>  GROUPS <span>{this.state.groups}</span></li>
             </ul>
           </div>
@@ -47,4 +67,10 @@ class Profile extends Component {
   }
 }
 
-export default connect(null, { getUserObject })(Profile);
+function mapStateToProps(state) {
+  return {
+    user: state.user.user,
+  };
+}
+
+export default connect(mapStateToProps, { getUserObject })(Profile);

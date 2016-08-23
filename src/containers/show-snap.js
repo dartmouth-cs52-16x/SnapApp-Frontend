@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Timer from 'react.timer';
 import jQuery from 'jquery';
 
+
 class ShowSnap extends Component {
 
   constructor(props) {
@@ -28,6 +29,7 @@ class ShowSnap extends Component {
   // }
 
   componentWillReceiveProps(props) {
+    console.log('\n\nSNAP PROPS', props.snap);
     if (props.snap) {
       this.setState({
         sentFrom: props.snap.sentFrom,
@@ -61,7 +63,7 @@ class ShowSnap extends Component {
         <div id="show-snap-full">
           <div id="show-snap-box">
             <h1>Snap from {this.state.sentFrom}</h1>
-            <h2> LOADING </h2>
+            <h2> LOADING... </h2>
           </div>
         </div>
       );

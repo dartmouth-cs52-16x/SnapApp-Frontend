@@ -47,25 +47,24 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="Sign-Up">
-        <h1> Sign Up!!! </h1>
+      <div className="Sign">
+        <div className="sui-inner">
+          <h1>SIGN UP</h1>
 
-        <div id="email">
-          <input placeholder="Enter your email" value={this.state.email} onChange={this.emailWasChanged} />
-        </div>
-        <div id="password">
-          <input placeholder="Enter your password" value={this.state.password} onChange={this.passwordWasChanged} />
-        </div>
-        <div id="username">
-          <input placeholder="Enter your username" value={this.state.username} onChange={this.usernameWasChanged} />
-        </div>
-
-        <div id="buttons">
-          <div id="signup" onClick={this.signUserUp}>
-            Sign Up
+          <div id="email">
+            <input placeholder="Email" value={this.state.email} onChange={this.emailWasChanged} />
           </div>
-          <div id="cancel">
-            <Link to="/">Cancel</Link>
+          <div id="username">
+            <input placeholder="Username" value={this.state.username} onChange={this.usernameWasChanged} />
+          </div>
+          <div id="password">
+            <input placeholder="Password" type="password" value={this.state.password} onChange={this.passwordWasChanged} />
+          </div>
+
+          <div id="splash-signup" className="submit-in-sui">
+            <div>
+              <a onClick={this.signUserUp}>SUBMIT</a>
+            </div>
           </div>
         </div>
       </div>
