@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import Webcam from 'react-webcam';
 import { browserHistory } from 'react-router';
+import Range from 'react-range';
 
 /* adapted from https://www.npmjs.com/package/webcam-capture */
 /* webcam!! */
@@ -20,6 +21,7 @@ class CreateSnap extends Component {
       usingWebcam: 0,
       snapReady: 0,
       pic: '',
+      timerVal: 5,
     };
 
     this.resetPage = this.resetPage.bind(this);
@@ -33,6 +35,7 @@ class CreateSnap extends Component {
     this.test = this.test.bind(this);
     this.callback = this.callback.bind(this);
     this.snapSentToSet = this.snapSentToSet.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
   }
 
   componentWillMount() {
@@ -93,6 +96,11 @@ class CreateSnap extends Component {
     this.refs.dropzone.open();
   }
 
+  handleOnChange(event) {
+    this.setState({
+      timerVal: event.target.value,
+    });
+  }
 
   retakePic() {
     this.setState({
@@ -150,7 +158,7 @@ class CreateSnap extends Component {
               <p>RESET</p>
             </div>
             <h4>PRESS PHOTO TO CAPTURE</h4>
-            <div className="pic-to-send" onClick={this.snapshot}>
+            <div className="pic-to-send-webcam" onClick={this.snapshot}>
               <Webcam ref="webcam" />
             </div>
           </div>
@@ -187,23 +195,30 @@ class CreateSnap extends Component {
               <i className="material-icons">replay</i>
               <p>RESET</p>
             </div>
-            <h4>PRESS PHOTO TO RETAKE</h4>
-            <div className="pic-to-send" onClick={this.retakePic}>
-              {this.state.pic ? <img alt="null" src={this.state.pic} /> : null}
-            </div>
-            <div id="ns-text-outer">
-              <div id="ns-text-send">
-                Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageCaptionWasSet} /> <span>*optional</span>
-              </div>
-            </div>
-            <div id="ns-caption-outer">
-              <div id="ns-caption-send">
-                Recipient: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} />
-              </div>
-            </div>
-            <div id="ns-submit">
-              <div>
-                <a onClick={this.onSubmit}>SEND</a>
+
+            <div className="form">
+              <div className="ssf-inner">
+                <h4>PRESS PHOTO TO RETAKE</h4>
+                <div className="pic-to-send" onClick={this.retakePic}>
+                  {this.state.pic ? <img alt="null" src={this.state.pic} /> : null}
+                </div>
+                <div>
+                  <input placeholder="Recipient's username" value={this.state.sentTo} onChange={this.snapSentToSet} />
+                </div>
+                <div>
+                  <input placeholder="Caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
+                </div>
+                <div>
+                  <Range max={10} min={1} value={this.state.timerVal} onChange={this.handleOnChange} />
+                </div>
+                <div>
+                  <i className="material-icons">timer</i>{this.state.timerVal}
+                </div>
+                <div id="splash-signup" className="submit-in-ssf">
+                  <div>
+                    <a onClick={this.onSubmit}>SEND</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -217,22 +232,29 @@ class CreateSnap extends Component {
               <i className="material-icons">replay</i>
               <p>RESET</p>
             </div>
-            <div className="pic-to-send">
-              {this.state.pic ? <img alt="null" src={this.state.pic} /> : null}
-            </div>
-            <div id="ns-text-outer">
-              <div id="ns-text-send">
-                Add a caption: <input id="pic-to-send-caption" placeholder="" value={this.state.caption} onChange={this.imageCaptionWasSet} /> <span>*optional</span>
-              </div>
-            </div>
-            <div id="ns-caption-outer">
-              <div id="ns-caption-send">
-                Recipient: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} />
-              </div>
-            </div>
-            <div id="ns-submit">
-              <div>
-                <a onClick={this.onSubmit}>SEND</a>
+
+            <div className="form">
+              <div className="ssf-inner">
+                <div className="pic-to-send">
+                  {this.state.pic ? <img alt="null" src={this.state.pic} /> : null}
+                </div>
+                <div>
+                  <input placeholder="Recipient's username" value={this.state.sentTo} onChange={this.snapSentToSet} />
+                </div>
+                <div>
+                  <input placeholder="Caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
+                </div>
+                <div>
+                  <Range max={10} min={1} value={this.state.timerVal} onChange={this.handleOnChange} />
+                </div>
+                <div>
+                  <i className="material-icons">timer</i>{this.state.timerVal}
+                </div>
+                <div id="splash-signup" className="submit-in-ssf">
+                  <div>
+                    <a onClick={this.onSubmit}>SEND</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
