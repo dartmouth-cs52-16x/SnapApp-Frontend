@@ -31,7 +31,7 @@ class NavBar extends Component {
             </Link>
           </li>
           <li className="nav-list-element">
-            <a className="nav-list-link" href="#">
+            <a className="nav-list-link" href="/groups">
               <i className="material-icons">group</i>
             </a>
           </li>

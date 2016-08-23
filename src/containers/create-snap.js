@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { createSnap, getUserObject } from '../actions/index.js';
+import { createSnap, getUserObject, checkUserExists } from '../actions/index.js';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import Webcam from 'react-webcam';
@@ -33,6 +33,7 @@ class CreateSnap extends Component {
     this.test = this.test.bind(this);
     this.callback = this.callback.bind(this);
     this.snapSentToSet = this.snapSentToSet.bind(this);
+    this.checkSentTo = this.checkSentTo.bind(this);
   }
 
   componentWillMount() {
@@ -137,6 +138,10 @@ class CreateSnap extends Component {
     });
   }
 
+  checkSentTo() {
+    this.props.checkUserExists({ sentTo: this.state.sentTo });
+  }
+
   render() {
     if (this.state.snapReady === 0) {
       // snap not ready to send
@@ -198,7 +203,7 @@ class CreateSnap extends Component {
             </div>
             <div id="ns-caption-outer">
               <div id="ns-caption-send">
-                Recipient Username: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} />
+                Recipient Username: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onBlur={this.checkSentTo} onChange={this.snapSentToSet} />
               </div>
             </div>
             <div id="ns-submit">
@@ -227,7 +232,7 @@ class CreateSnap extends Component {
             </div>
             <div id="ns-caption-outer">
               <div id="ns-caption-send">
-                Recipient Username: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} />
+                Recipient Username: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onBlur={this.checkSentTo} onChange={this.snapSentToSet} />
               </div>
             </div>
             <div id="ns-submit">
@@ -249,4 +254,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { createSnap, getUserObject })(CreateSnap);
+export default connect(mapStateToProps, { createSnap, getUserObject, checkUserExists })(CreateSnap);

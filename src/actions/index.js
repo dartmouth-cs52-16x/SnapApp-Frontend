@@ -16,9 +16,9 @@ export const ActionTypes = {
 };
 
 export function checkUserExists(fields) {
+  console.log(fields);
   return (dispatch) => {
-    axios.get(`${BASE_URL}/snaps/`, fields, { headers: { authorization: localStorage.getItem('token') } })
-    .then((response) => {
+    axios.get(`${BASE_URL}/user/`, fields, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
       console.log(response);
       dispatch({
         type: ActionTypes.GET_USER,
