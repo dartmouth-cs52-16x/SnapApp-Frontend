@@ -200,7 +200,6 @@ class CreateSnap extends Component {
               <i className="material-icons">replay</i>
               <p>RESET</p>
             </div>
-<<<<<<< HEAD
 
             <div className="form">
               <div className="ssf-inner">
