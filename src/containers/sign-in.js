@@ -45,7 +45,7 @@ class SignIn extends Component {
             <input placeholder="Email" value={this.state.email} onChange={this.emailWasChanged} />
           </div>
           <div id="password">
-            <input placeholder="Password" value={this.state.password} onChange={this.passwordWasChanged} />
+            <input placeholder="Password" type="password" value={this.state.password} onChange={this.passwordWasChanged} />
           </div>
 
           <div id="splash-signup" className="submit-in-sui">
