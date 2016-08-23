@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserObject } from '../actions';
+import { getUserObject, signoutUser } from '../actions';
 import Dropzone from 'react-dropzone';
 
 class Settings extends Component {
@@ -22,6 +22,7 @@ class Settings extends Component {
     this.changingPassword = this.changingPassword.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.callback = this.callback.bind(this);
+    this.deleteProfile = this.deleteProfile.bind(this);
   }
 
   componentWillMount() {
@@ -97,6 +98,11 @@ class Settings extends Component {
     }
   }
 
+  deleteProfile() {
+    this.props.signoutUser();
+    // backend function
+  }
+
   render() {
     if (this.state.updatingInfo === 0) {
       return (
@@ -111,7 +117,10 @@ class Settings extends Component {
                 <li>  PASSWORD <span id="fl">&#8226;</span></li>
                 <li>  PROFILE PICTURE <span id="ppicon"><i className="material-icons">photo</i></span></li>
               </ul>
-              <div onClick={this.updateInfo} id="settings-change-info">UPDATE INFO</div>
+              <div className="content-row">
+                <div onClick={this.updateInfo} id="settings-change-info">UPDATE INFO</div>
+                <div onClick={this.deleteProfile} id="settings-change-info">DELETE PROFILE</div>
+              </div>
             </div>
           </div>
         </div>
@@ -152,4 +161,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getUserObject })(Settings);
+export default connect(mapStateToProps, { getUserObject, signoutUser })(Settings);
