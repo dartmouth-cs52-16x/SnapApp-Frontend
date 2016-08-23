@@ -41,8 +41,8 @@ class NavBar extends Component {
             </Link>
           </li>
           <li className="nav-list-element">
-            <Link className="nav-list-link" to="/">
-              <i onClick={this.props.signoutUser} className="material-icons">exit_to_app</i>
+            <Link className="nav-list-link" onClick={this.props.signoutUser} to="/">
+              <i className="material-icons">exit_to_app</i>
             </Link>
           </li>
         </ul>

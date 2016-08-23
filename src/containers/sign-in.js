@@ -38,21 +38,20 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className="Sign-In">
-        <h1> Sign In! </h1>
-        <div id="email">
-          <input placeholder="Enter your email" value={this.state.email} onChange={this.emailWasChanged} />
-        </div>
-        <div id="password">
-          <input placeholder="Enter your password" value={this.state.password} onChange={this.passwordWasChanged} />
-        </div>
-
-        <div id="buttons">
-          <div id="signin" onClick={this.signUserIn}>
-            Sign In
+      <div className="Sign">
+        <div className="sui-inner">
+          <h1>SIGN IN</h1>
+          <div id="email">
+            <input placeholder="Email" value={this.state.email} onChange={this.emailWasChanged} />
           </div>
-          <div id="cancel">
-            <Link to="/">Cancel</Link>
+          <div id="password">
+            <input placeholder="Password" value={this.state.password} onChange={this.passwordWasChanged} />
+          </div>
+
+          <div id="splash-signup" className="submit-in-sui">
+            <div>
+              <a onClick={this.signUserIn}>SUBMIT</a>
+            </div>
           </div>
         </div>
       </div>
