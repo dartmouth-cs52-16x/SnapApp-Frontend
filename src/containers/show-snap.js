@@ -14,6 +14,7 @@ class ShowSnap extends Component {
       sentFrom: '',
       sentTo: '',
       src: null,
+      timer: 5,
     };
   }
 
@@ -34,6 +35,7 @@ class ShowSnap extends Component {
       this.setState({
         sentFrom: props.snap.sentFrom,
         sentTo: props.snap.sentTo,
+        timer: props.snap.timer,
       });
       jQuery.get(props.snap.pictureURL, (data) => {
         console.log('THIS IS THE DATA', data);
@@ -42,7 +44,7 @@ class ShowSnap extends Component {
         });
         setTimeout(() => {
           this.props.deleteSnap(this.props.params.id);
-        }, 10000);
+        }, this.state.timer * 1000);
       });
     }
   }
@@ -51,18 +53,20 @@ class ShowSnap extends Component {
     if (this.state.src) {
       return (
         <div id="show-snap-full">
+          <div id="profile-header">NEW SNAP FROM {this.state.sentFrom}</div>
           <div id="show-snap-box">
-            <h1>Snap from {this.state.sentFrom}</h1>
             <img role="presentation" src={this.state.src} />
           </div>
-          <Timer countDown startTime={10} />
+          <div id="timer-div">
+            <i className="material-icons">timer</i><Timer countDown startTime={this.state.timer} />
+          </div>
         </div>
       );
     } else {
       return (
         <div id="show-snap-full">
+          <div id="profile-header">NEW SNAP FROM {this.state.sentFrom}</div>
           <div id="show-snap-box">
-            <h1>Snap from {this.state.sentFrom}</h1>
             <h2> LOADING... </h2>
           </div>
         </div>

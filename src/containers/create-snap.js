@@ -52,7 +52,10 @@ class CreateSnap extends Component {
     }
     const sentFrom = this.props.user.username;
     const sentTo = this.state.sentTo;
-    this.props.createSnap({ pictureURL, sentFrom, sentTo, file: this.state.pic });
+    // const timer = this.state.timerVal;
+    const timer = 100;
+    console.log(`timer is  ${timer}`);
+    this.props.createSnap({ timer, pictureURL, sentFrom, sentTo, file: this.state.pic });
     browserHistory.push('/snaps');
   }
 
