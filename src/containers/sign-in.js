@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signinUser } from '../actions';
-import { Link } from 'react-router';
+
 
 class SignIn extends Component {
   constructor() {
     super();
 
     this.state = {
-      email: '',
+      username: '',
       password: '',
     };
 
-    this.emailWasChanged = this.emailWasChanged.bind(this);
+    this.usernameWasChanged = this.usernameWasChanged.bind(this);
     this.passwordWasChanged = this.passwordWasChanged.bind(this);
     this.signUserIn = this.signUserIn.bind(this);
   }
 
-  emailWasChanged(event) {
+  usernameWasChanged(event) {
     this.setState({
-      email: event.target.value,
+      username: event.target.value,
     });
   }
 
@@ -31,7 +31,7 @@ class SignIn extends Component {
 
   signUserIn() {
     this.props.signinUser({
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password,
     });
   }
@@ -42,7 +42,7 @@ class SignIn extends Component {
         <div className="sui-inner">
           <h1>SIGN IN</h1>
           <div id="email">
-            <input placeholder="Email" value={this.state.email} onChange={this.emailWasChanged} />
+            <input placeholder="Username" value={this.state.username} onChange={this.usernameWasChanged} />
           </div>
           <div id="password">
             <input placeholder="Password" type="password" value={this.state.password} onChange={this.passwordWasChanged} />

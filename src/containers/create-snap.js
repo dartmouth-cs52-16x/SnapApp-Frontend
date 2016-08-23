@@ -198,7 +198,7 @@ class CreateSnap extends Component {
             </div>
             <div id="ns-caption-outer">
               <div id="ns-caption-send">
-                Recipient: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} />
+                Recipient Username: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} />
               </div>
             </div>
             <div id="ns-submit">
@@ -227,7 +227,7 @@ class CreateSnap extends Component {
             </div>
             <div id="ns-caption-outer">
               <div id="ns-caption-send">
-                Recipient: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} />
+                Recipient Username: <input id="pic-to-send-caption" placeholder="" value={this.state.sentTo} onChange={this.snapSentToSet} />
               </div>
             </div>
             <div id="ns-submit">
