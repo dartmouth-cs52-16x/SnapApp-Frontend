@@ -56,9 +56,9 @@ class Profile extends Component {
           <h4>{this.props.user.email}</h4>
           <div className="list-holder">
             <ul className="profile-ul1">
-              <li><i className="material-icons">star</i>  SNAP SCORE <span>{this.props.user.snapScore}</span></li>
-              <li><i className="material-icons">person_pin</i>  TOP FRIEND <span>{this.state.topFriendName}</span></li>
-              <li><i className="material-icons">group</i>  GROUPS <span>{this.state.groups}</span></li>
+              <li><i className="material-icons">star</i> SNAP SCORE <span id="fl">{this.props.user.snapScore}</span></li>
+              <li><i className="material-icons">person_pin</i> TOP FRIEND <span id="fl">{this.props.user.topFriend}</span></li>
+              <li><i className="material-icons">group</i> GROUPS <span id="fl">{this.state.groups}</span></li>
             </ul>
           </div>
         </div>

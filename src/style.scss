@@ -1,5 +1,5 @@
 html, body {
-  height: 100%;
+  min-height: 100%;
   padding: 0;
   margin: 0;
 }
@@ -14,7 +14,7 @@ body {
 }
 
 #full {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   display: flex;
 }
@@ -26,10 +26,11 @@ body {
 
 #layout {
   width: 100%;
+  min-height: 100%;
 }
 
 #main {
-  height: 100%;
+  min-height: 100%;
 }
 
 /* =============== LEFT SIDE NAV BAR ================ */
@@ -42,12 +43,12 @@ body {
 }
 
 .NavBar {
+  min-height: 100%;
   float: left;
   margin-left: 0px;
   background-color: rgba(0, 0, 0, 0.85);
   width: 125px;
   margin-bottom: 0px;
-  min-height: 100%;
 }
 
 .nav-list {
@@ -367,20 +368,62 @@ body {
   color: #0BB5FF;
 }
 
-.pic-to-send {
+.pic-to-send-webcam {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;
-  width: 500px;
+  width: 640px;
+  margin-bottom: 80px;
 }
 
 .pic-to-send img {
-  width: 500px;
+  width: 200px;
 }
 
 #pts-img {
   margin-left: auto;
   margin-right: auto;
+}
+
+/* ========== SEND SNAP FORM =========== */
+
+.form {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+}
+
+#slider {
+  height: 10px;
+}
+
+.ssf-inner {
+  padding-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0.7);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.ssf-inner input {
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  width: 300px;
+  height: 40px;
+  padding: 5px;
+  margin: 5px;
+  font-size: 16px;
+  font-family: "Work Sans", sans-serif;
+}
+
+.submit-in-ssf {
+  margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 /* ============== SUBMIT BUTTON SEND SCREEN ======= */
@@ -438,16 +481,9 @@ body {
 
 /* =============== PROFILE PAGE ============ */
 
-.profile-top {
-  display: flex;
-  flex-direction: row;
-}
-
 .profile {
-  display: absolute;
   background-color: rgba(255, 255, 255, 0.6);
   width: 400px;
-  margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -471,7 +507,7 @@ body {
   list-style: none;
 }
 
-.profile span {
+#fl {
   float: right;
 }
 
@@ -516,22 +552,20 @@ body {
 /* ============== SETTINGS PAGE ============= */
 
 .settings-top {
-  display: flex;
-  flex-direction: row;
+  margin-bottom: 65px;
 }
 
 .settings {
-  display: absolute;
   background-color: rgba(255, 255, 255, 0.6);
   width: 400px;
-  margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .settings h1 {
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
+  padding-top: 20px;
   border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
@@ -544,7 +578,29 @@ body {
   list-style: none;
 }
 
-.settings span {
+#settings-ul2 {
+  padding: 1px;
+}
+
+.settings li input {
+  color: black;
+  display: block;
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: rgba(0,0,0,0);
+  width: 100%;
+  height: 25px;
+  padding: 5px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 16px;
+}
+
+#tam {
+  text-align: center;
+  cursor: pointer;
+}
+
+#fl {
   float: right;
 }
 
@@ -574,7 +630,19 @@ body {
   margin-left: 50px;
 }
 
+.update-prof-pic {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.update-prof-pic img {
+  width: 200px;
+}
+
 #settings-change-info {
+  text-align: center;
   float: left;
   margin-left: 40px;
   margin-bottom: 40px;
@@ -631,6 +699,7 @@ body {
 }
 
 .SplashPage {
+  background-repeat:no-repeat;
   width: 100%;
   height: 100%;
 }
@@ -639,7 +708,6 @@ body {
   height: 220px;
   font-family: 'Baloo Tamma', 'Helvetica Neue';
   font-size: 80px;
-  margin-top: 20px;
 }
 
 #splash-title h1 {
@@ -647,11 +715,11 @@ body {
 }
 
 .splash-full {
-  height: 100%;
+  margin-top: 0;
+  min-height: 100%;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.5);
-  display: flex;
-  flex-direction: column;
+  background-repeat:no-repeat;
 }
 
 #splash-signin {
@@ -756,4 +824,19 @@ body {
 
 .Sign h1 {
   font-size: 50px;
+}
+
+/* ============= OVERRIDE METHODS ======== */
+
+#nobg {
+  background-color: rgba(255,255,255,0.8);
+}
+
+#black {
+  color: red;
+}
+
+#ppicon {
+  float: right;
+  margin-top: -3px;
 }
