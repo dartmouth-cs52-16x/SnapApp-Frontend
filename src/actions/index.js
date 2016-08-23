@@ -32,7 +32,6 @@ export function getUserObject() {
 }
 
 export function createSnap(fields) {
-  console.log(fields);
   return (dispatch) => {
     axios.post(`${BASE_URL}/snaps/`, fields, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
       dispatch({
@@ -42,10 +41,6 @@ export function createSnap(fields) {
       browserHistory.push('/snaps');
     }).catch((error) => {
       console.log(error);
-      dispatch({
-        type: ActionTypes.CREATE_SNAP,
-        payload: 'No User Exists',
-      });
     });
   };
 }
@@ -125,6 +120,9 @@ export function signinUser({ email, password }) {
 
   return (dispatch) => {
     axios.post(`${BASE_URL}/signin/`, { email, password }).then(response => {
+      console.log(response);
+      console.log('sign in called');
+      console.log(email);
       dispatch({
         type: ActionTypes.AUTH_USER,
         payload: email,
@@ -149,6 +147,9 @@ export function signupUser({ email, password, username }) {
 
   return (dispatch) => {
     axios.post(`${BASE_URL}/signup/`, { email, password, username }).then(response => {
+      console.log('sign up called');
+      console.log(response);
+
       dispatch({
         type: ActionTypes.AUTH_USER,
         payload: email,

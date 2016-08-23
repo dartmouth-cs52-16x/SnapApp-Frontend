@@ -3,6 +3,8 @@ import { createSnap, getUserObject } from '../actions/index.js';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import Webcam from 'react-webcam';
+import { browserHistory } from 'react-router';
+
 /* adapted from https://www.npmjs.com/package/webcam-capture */
 /* webcam!! */
 
@@ -47,6 +49,7 @@ class CreateSnap extends Component {
     const sentFrom = this.props.user.username;
     const sentTo = this.state.sentTo;
     this.props.createSnap({ pictureURL, sentFrom, sentTo, file: this.state.pic });
+    browserHistory.push('/snaps');
   }
 
   test(data) {//  eslint-disable-line
