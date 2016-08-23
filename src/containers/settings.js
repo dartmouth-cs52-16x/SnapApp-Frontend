@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserObject } from '../actions';
+import { getUserObject, updateProfile } from '../actions';
 import Dropzone from 'react-dropzone';
 
 class Settings extends Component {
@@ -60,8 +60,6 @@ class Settings extends Component {
   }
 
   callback(data) {
-    console.log('storing all the data');
-
     this.setState({
       pic: data.target.result,
     });
@@ -87,13 +85,16 @@ class Settings extends Component {
 
   updateInfo() {
     if (this.state.updatingInfo === 0) {
+      // updTING INFO
       this.setState({
         updatingInfo: 1,
       });
     } else {
+      // saving info
       this.setState({
         updatingInfo: 0,
       });
+      this.props.updateProfile({ email: this.state.email, username: this.state.username, id: this.props.user._id, file: this.state.pic });
     }
   }
 
@@ -126,7 +127,7 @@ class Settings extends Component {
               <ul className="settings-ul2">
                 <li id="nobg"><span id="black">UPDATE USERNAME:</span><input type="text" placeholder="Username" value={this.state.username} onChange={this.changingUsername} /></li>
                 <li id="nobg"><span id="black">UPDATE EMAIL:</span><input type="text" placeholder="Email" value={this.state.email} onChange={this.changingEmail} /></li>
-                <li onClick={this.onDrop} id="tam">
+                <li id="tam">
                   <Dropzone ref="dropzone" style="border: none" onDrop={this.onDrop} multiple={false}>
                     CLICK TO UPDATE PROFILE PICTURE
                   </Dropzone>
@@ -152,4 +153,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getUserObject })(Settings);
+export default connect(mapStateToProps, { getUserObject, updateProfile })(Settings);
