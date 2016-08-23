@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { createSnap } from '../actions/index.js';
+import { createSnap, getUserObject } from '../actions/index.js';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import Webcam from 'react-webcam';
@@ -33,6 +33,10 @@ class CreateSnap extends Component {
     this.snapSentToSet = this.snapSentToSet.bind(this);
   }
 
+  componentWillMount() {
+    this.props.getUserObject();
+  }
+
   onSubmit() {
     let pictureURL;
     if (!this.state.caption) {
@@ -40,7 +44,7 @@ class CreateSnap extends Component {
     } else {
       pictureURL = this.state.caption;
     }
-    const sentFrom = 'fromUserID';
+    const sentFrom = this.props.user.username;
     const sentTo = this.state.sentTo;
     this.props.createSnap({ pictureURL, sentFrom, sentTo, file: this.state.pic });
   }
@@ -231,4 +235,11 @@ class CreateSnap extends Component {
   }
 }
 
-export default connect(null, { createSnap })(CreateSnap);
+function mapStateToProps(state) {
+  return {
+    user: state.user.user,
+  };
+}
+
+
+export default connect(mapStateToProps, { createSnap, getUserObject })(CreateSnap);

@@ -7,13 +7,7 @@ import Snap from '../components/snap.js';
 class Main extends Component {
 
   componentWillMount() {
-    console.log('component will mount user', this.props.user);
-    this.props.getSnaps('asdf');
-  }
-
-  componentWillReceiveProps(props) {
-    console.log('component will receive props user', props.user);
-    this.props.getSnaps('asdf');
+    this.props.getSnaps();
   }
 
   render() {
@@ -57,7 +51,6 @@ class Main extends Component {
 function mapStateToProps(state) {
   return {
     snaps: state.snaps.all,
-    user: state.auth.email,
   };
 }
 

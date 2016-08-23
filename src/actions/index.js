@@ -18,13 +18,15 @@ export const ActionTypes = {
 export function getUserObject() {
   console.log('getting user');
   return (dispatch) => {
-    axios.post(`${BASE_URL}/profile/`, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
+    axios.get(`${BASE_URL}/profile/`, { headers: { authorization: localStorage.getItem('token') } })
+    .then((response) => {
+      console.log(response);
       dispatch({
         type: ActionTypes.GET_USER,
         payload: response.data,
-      }).catch((error) => {
-        console.log(error);
       });
+    }).catch((error) => {
+      console.log(error);
     });
   };
 }
@@ -40,11 +42,15 @@ export function createSnap(fields) {
       browserHistory.push('/snaps');
     }).catch((error) => {
       console.log(error);
+      dispatch({
+        type: ActionTypes.CREATE_SNAP,
+        payload: 'No User Exists',
+      });
     });
   };
 }
 
-export function getSnaps(email) {
+export function getSnaps() {
   return (dispatch) => {
     axios.get(`${BASE_URL}/snaps`, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
       console.log('GET SNAPS DATA', response.data);
@@ -119,9 +125,6 @@ export function signinUser({ email, password }) {
 
   return (dispatch) => {
     axios.post(`${BASE_URL}/signin/`, { email, password }).then(response => {
-      console.log(response);
-      console.log('sign in called');
-      console.log(email);
       dispatch({
         type: ActionTypes.AUTH_USER,
         payload: email,
@@ -146,9 +149,6 @@ export function signupUser({ email, password, username }) {
 
   return (dispatch) => {
     axios.post(`${BASE_URL}/signup/`, { email, password, username }).then(response => {
-      console.log('sign up called');
-      console.log(response);
-
       dispatch({
         type: ActionTypes.AUTH_USER,
         payload: email,

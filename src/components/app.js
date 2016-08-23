@@ -33,7 +33,7 @@ class App extends Component {
     } else {
       console.log('not authed, display signup/in');
       main = (
-        <div>
+        <div className="SplashPage">
           <SplashPage />
           {this.props.children}
         </div>
