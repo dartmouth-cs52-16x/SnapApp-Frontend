@@ -18,11 +18,11 @@ class Main extends Component {
       if (count === 0) {
         count = 1;
         return (
-          <Snap fromUser={snap.sentFrom} snapId={snap.id} key={snap.id} spec={'first'} />
+          <Snap timer={snap.timer} fromUser={snap.sentFrom} snapId={snap.id} key={snap.id} spec={'first'} />
         );
       } else {
         return (
-          <Snap fromUser={snap.sentFrom} snapId={snap.id} key={snap.id} spec={'not-first'} />
+          <Snap timer={snap.timer} fromUser={snap.sentFrom} snapId={snap.id} key={snap.id} spec={'not-first'} />
         );
       }
     });
