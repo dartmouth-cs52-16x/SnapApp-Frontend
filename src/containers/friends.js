@@ -53,9 +53,10 @@ class Friends extends Component {
       console.log('mapping');
       receivedFriends = 0;
       return (
-        <div key={friend._id} className="home-snap-full" id="home-snap-first">
-          Name: {friend.name}
-          Score: {friend.score}
+        <div key={friend._id} className="single-friend-full">
+          <div id="sff-icon"><i className="material-icons">person</i></div>
+          <p>{friend.name}</p>
+          <p id="jfr">{friend.score}<i className="material-icons">star</i></p>
         </div>
       );
     });
@@ -70,17 +71,18 @@ class Friends extends Component {
         <div className="Friends">
           <div id="show-snap-header">FRIENDS</div>
           <div className="friends-inner">
-            <h1>Add A New Friend</h1>
+            <h1>Friends List</h1>
+            <div id="FriendList">
+              {friendsAll}
+            </div>
+            <h1 id="bbt">Add New Friends</h1>
             <div>
               <input placeholder="Username" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
             </div>
-            <div className="submit-in-friends">
+            <div id="friends-add" className="submit-in-friends">
               <div>
-                <a onClick={this.addFriend}>SUBMIT</a>
+                <a onClick={this.addFriend}><i id="afi" className="material-icons">person_add</i></a>
               </div>
-            </div>
-            <div id="FriendList">
-              {friendsAll}
             </div>
           </div>
         </div>
@@ -91,18 +93,19 @@ class Friends extends Component {
         <div className="Friends">
           <div id="show-snap-header">FRIENDS</div>
           <div className="friends-inner">
-            <h1>Add A New Friend</h1>
+            <h1>Friends List</h1>
+            <div id="FriendList" className="tam">
+              You currently have no friends :/
+            </div>
+            <h1 id="bbt">Add New Friends</h1>
             <div>
               <input placeholder="Username" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
             </div>
-            <div className="submit-in-sui3">
+            <div id="friends-add" className="submit-in-friends">
               <div>
-                <a onClick={this.addFriend}>SUBMIT</a>
+                <a onClick={this.addFriend}><i id="afi" className="material-icons">person_add</i></a>
               </div>
             </div>
-          </div>
-          <div>
-            You currently have no friends. Add some above!
           </div>
         </div>
       );
