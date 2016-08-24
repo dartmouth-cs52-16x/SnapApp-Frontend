@@ -15,6 +15,8 @@ class ShowSnap extends Component {
       sentTo: '',
       src: null,
       timer: 5,
+      caption: '',
+      timeout: null,
     };
   }
 
@@ -36,36 +38,52 @@ class ShowSnap extends Component {
         sentFrom: props.snap.sentFrom,
         sentTo: props.snap.sentTo,
         timer: props.snap.timer,
+        caption: props.snap.caption,
       });
       jQuery.get(props.snap.pictureURL, (data) => {
         console.log('THIS IS THE DATA', data);
         this.setState({
           src: data,
         });
-        setTimeout(() => {
+        const snapTimeout = setTimeout(() => {
           this.props.deleteSnap(this.props.params.id);
         }, this.state.timer * 1000);
+        this.setState({
+          timeout: snapTimeout,
+        });
       });
     }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.state.timeout);
+    this.props.deleteSnap(this.props.params.id);
   }
 
   render() {
     if (this.state.src) {
       return (
         <div id="show-snap-full">
-          <div id="profile-header">NEW SNAP FROM {this.state.sentFrom}</div>
-          <div id="show-snap-box">
-            <img role="presentation" src={this.state.src} />
+          <div id="show-snap-tops">
+            <div id="show-snap-header">NEW SNAP FROM {this.state.sentFrom}</div>
+            <div id="timer-div">
+              <i className="material-icons">timer</i><Timer countDown startTime={this.state.timer} />
+            </div>
           </div>
-          <div id="timer-div">
-            <i className="material-icons">timer</i><Timer countDown startTime={this.state.timer} />
+          <div className="show-snap-outer">
+            <div id="show-snap-box">
+              <img role="presentation" src={this.state.src} />
+            </div>
+            <div id="show-snap-caption">
+              {this.state.caption}
+            </div>
           </div>
         </div>
       );
     } else {
       return (
         <div id="show-snap-full">
-          <div id="profile-header">NEW SNAP FROM {this.state.sentFrom}</div>
+          <div id="show-snap-header">NEW SNAP FROM {this.state.sentFrom}</div>
           <div id="show-snap-box">
             <h2> LOADING... </h2>
           </div>

@@ -12,9 +12,9 @@ class Profile extends Component {
       username: '',
       email: '',
       profilePictureURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
-      snapScore: 71,
+      snapScore: 0,
       topFriendName: 'None',
-      streak: 23,
+      streak: 0,
       friends: 0,
     };
   }
