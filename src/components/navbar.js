@@ -18,6 +18,7 @@ class NavBar extends Component {
   }
 
   componentWillReceiveProps(props) {
+    console.log('PROFILE PIC URL NAVBAR', props.user.profilePicURL);
     if (!props.user.profilePicURL) {
       this.setState({
         pic: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',

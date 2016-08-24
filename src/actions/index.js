@@ -133,6 +133,23 @@ export function signoutUser() {
   };
 }
 
+export function deleteUser(token) {
+  console.log('DELETE USER TOKEN', token);
+  return (dispatch) => {
+    console.log('USER TOKEN IN INDEX', localStorage.getItem('token'));
+    axios.delete(`${BASE_URL}/user`, { headers: { authorization: token } }).then(response => {
+      dispatch({
+        type: ActionTypes.DELETE_POST,
+        payload: null,
+      });
+      // do something with response.data  (some json)
+    }).catch(error => {
+      // hit an error do something else!
+      console.log('Error deleting post by id');
+    });
+  };
+}
+
 // trigger to deauth if there is error
 // can also use in your error reducer if you have one to display an error message
 export function authError(error) {
