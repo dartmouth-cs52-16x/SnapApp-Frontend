@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserObject, updateProfile, signoutUser } from '../actions';
 import Dropzone from 'react-dropzone';
+import jQuery from 'jquery';
 
 class Settings extends Component {
   constructor(props) {
@@ -36,6 +37,18 @@ class Settings extends Component {
       email: props.user.email,
       password: props.user.password,
     });
+    if (props.user.profilePicURL) {
+      jQuery.get(props.user.profilePicURL, (data) => {
+        console.log('THIS IS THE DATA', data);
+        this.setState({
+          pic: data,
+        });
+      });
+    } else {
+      this.setState({
+        pic: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
+      });
+    }
   }
 
   onDrop(files) {
@@ -95,7 +108,11 @@ class Settings extends Component {
       this.setState({
         updatingInfo: 0,
       });
-      this.props.updateProfile({ email: this.state.email, username: this.state.username, id: this.props.user._id, file: this.state.pic });
+      if (this.props.user.profilePicURL) {
+        this.props.updateProfile({ email: this.state.email, username: this.state.username, id: this.props.user._id, file: this.state.pic });
+      } else {
+        this.props.updateProfile({ email: this.state.email, username: this.state.username, id: this.props.user._id, file: this.state.pic });
+      }
     }
   }
 
