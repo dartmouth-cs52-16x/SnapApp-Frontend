@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserObject } from '../actions';
+import { getUserObject, addFriendToUser } from '../actions';
 
 class Friends extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class Friends extends Component {
     const newArray = this.state.friends.slice();
     newArray.push({ name: this.state.newFriend, score: 69 });
     this.setState({ friends: newArray });
-    // add friend to database here
+    this.props.addFriendToUser({ friends: this.state.friends });
   }
 
 
@@ -117,4 +117,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { getUserObject })(Friends);
+export default connect(mapStateToProps, { getUserObject, addFriendToUser })(Friends);
