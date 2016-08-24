@@ -8,10 +8,10 @@ class Profile extends Component {
     super(props);
 
     this.state = {
-      fullname: 'Placeholder Name',
-      username: 'Placeholder Username',
+      fullname: this.props.user.username,
+      username: this.props.user.username,
       email: 'Placeholder Email',
-      profilePictureURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
+      profilePictureURL: this.props.user.profilePictureURL,
       snapScore: 71,
       topFriendName: 'Rajiv Ramaiah',
       streak: 23,
@@ -47,4 +47,10 @@ class Profile extends Component {
   }
 }
 
-export default connect(null, { getUserObject })(Profile);
+function mapStateToProps(state) {
+  return {
+    user: state.user.user,
+  };
+}
+
+export default connect(mapStateToProps, { getUserObject })(Profile);

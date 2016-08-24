@@ -16,6 +16,7 @@ class Splash extends Component {
         <Link to="/signup" className="SignUp">
           SignUp
         </Link>
+        <Link to="/auth/facebook">Login with Facebook</Link>
       </div>
     );
   }

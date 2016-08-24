@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route } from 'react-router';
 import App from './components/app';
 import Main from './containers/main';
 import CreateSnap from './containers/create-snap.js';
@@ -9,6 +9,7 @@ import Profile from './containers/profile.js';
 import RequireAuth from './containers/require-auth';
 import SignUp from './containers/sign-up';
 import SignIn from './containers/sign-in';
+import fb from './containers/fb';
 
 
 export default(
@@ -20,5 +21,6 @@ export default(
     <Route path="/profile" component={RequireAuth(Profile)} />
     <Route path="/signup" component={SignUp} />
     <Route path="/signin" component={SignIn} />
+    <Route path="/auth/facebook" component={fb} />
   </Route>
 );

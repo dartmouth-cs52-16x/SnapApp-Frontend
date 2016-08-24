@@ -13,18 +13,22 @@ export const ActionTypes = {
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
   GET_USER: 'GET_USER',
+  FB_AUTH: 'FB_AUTH',
 };
+
 
 export function getUserObject() {
   console.log('getting user');
+  console.log(localStorage.getItem('token'));
   return (dispatch) => {
-    axios.post(`${BASE_URL}/profile/`, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
+    axios.get(`${BASE_URL}/profile/`, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
       dispatch({
         type: ActionTypes.GET_USER,
         payload: response.data,
-      }).catch((error) => {
-        console.log(error);
       });
+      console.log(response.data);
+    }).catch((error) => {
+      console.log(error);
     });
   };
 }
@@ -159,5 +163,43 @@ export function signupUser({ email, password, username }) {
     .catch((error) => {
       dispatch(authError('Sign Up Failed', error.response.data));
     });
+  };
+}
+
+export function fbAuth(accessToken) {
+  console.log('authenticating with facebook...');
+  console.log(`ACCESS TOKEN: ${accessToken}`);
+  return (dispatch) => {
+    console.log('sending token to facebook...');
+    axios.get(`https://graph.facebook.com/me?fields=id,name,picture.type(large)&access_token=${accessToken}`)
+    .then(response => {
+      console.log(response);
+
+
+      const facebookUserID = response.data.id;
+      const facebookUserName = response.data.name;
+      const facebookUserPicture = response.data.picture.data.url;
+
+      console.log(`facebookUserID: ${facebookUserID}`);
+      console.log(`facebookUserName: ${facebookUserName}`);
+      console.log(`facebookUserPicture: ${facebookUserPicture}`);
+
+      axios.post(`${BASE_URL}/auth/facebook`, { facebookUserID, facebookUserName, facebookUserPicture })
+        .then(response2 => {
+          console.log(`fb auth called for user id: ${facebookUserID}`);
+          console.log(response2);
+
+          dispatch({
+            type: ActionTypes.FB_AUTH,
+            payload: facebookUserID,
+          });
+          localStorage.setItem('token', response2.data.token);
+          console.log(`token set as: ${response2.data.token}`);
+          browserHistory.push('/profile');
+        });
+    })
+  .catch((error) => {
+    dispatch(authError(`Sign In Failed: ${error.response.data}`));
+  });
   };
 }
