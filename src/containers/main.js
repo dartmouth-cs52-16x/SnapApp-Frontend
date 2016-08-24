@@ -22,7 +22,7 @@ class Main extends Component {
         );
       } else {
         return (
-          <Snap timer={snap.timer} fromUser={snap.sentFrom} snapId={snap.id} key={snap.id} spec={'not-first'} />
+          <Snap timer={snap.timer} fromUser={snap.sentFrom} snapId={snap.id} key={snap.id} spec={'not-first'} time={snap.time} />
         );
       }
     });

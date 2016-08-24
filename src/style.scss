@@ -71,6 +71,13 @@ body {
   border-radius: 50%;
 }
 
+.prof-user-img {
+  padding: 15%;
+  width: 100%;
+  height: auto;
+  padding-bottom: 5%;
+}
+
 .nav-list-element {
   float: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -1038,4 +1045,24 @@ body {
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   color: #0BB5FF;
   background-color: rgba(0,0,0,0);
+}
+
+/* ======== MORE =========== */
+
+#ns-checkname-div {
+  text-align: left;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+}
+
+#ns-checkname {
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: #0BB5FF;
+  display: inline;
+  margin-top: 5px;
 }

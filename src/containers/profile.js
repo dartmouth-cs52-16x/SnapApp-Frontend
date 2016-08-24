@@ -71,7 +71,7 @@ class Profile extends Component {
         <div id="profile-header">PROFILE</div>
         <div className="profile">
           <div id="profile-pic">
-            <img src={this.state.profilePictureURL} alt="null" className="nav-user-img" />
+            <img src={this.state.profilePictureURL} alt="null" className="prof-user-img" />
           </div>
           <h1>{this.props.user.username}</h1>
           <h4>{this.props.user.email}</h4>
