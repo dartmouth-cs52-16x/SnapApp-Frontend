@@ -37,7 +37,7 @@ class Friends extends Component {
     const newArray = this.state.friends.slice();
     newArray.push({ name: this.state.newFriend, score: 0 });
     this.setState({ friends: newArray });
-    this.props.addFriendToUser({ friends: this.state.friends });
+    this.props.addFriendToUser({ friends: newArray });
   }
 
 
