@@ -1,23 +1,44 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { signoutUser } from '../actions';
+import { signoutUser, getUserObject } from '../actions';
 import { connect } from 'react-redux';
-
+import jQuery from 'jquery';
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      profilePictureURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
+      pic: '',
     };
   }
+
+  componentWillMount() {
+    console.log('getting user object');
+    this.props.getUserObject();
+  }
+
+  componentWillReceiveProps(props) {
+    if (!props.user.profilePicURL) {
+      this.setState({
+        pic: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
+      });
+    } else {
+      jQuery.get(props.user.profilePicURL, (data) => {
+        console.log('THIS IS THE DATA', data);
+        this.setState({
+          pic: data,
+        });
+      });
+    }
+  }
+
   render() {
     return (
       <div className="NavBar">
         <ul className="nav-list">
           <li className="nav-list-element" id="nav-top">
             <Link to="/profile" className="nav-list-link" id="nav-top-link">
-              <img src={`${this.state.profilePictureURL}`} alt="null" className="nav-user-img" />
+              <img src={`${this.state.pic}`} alt="null" className="nav-user-img" />
             </Link>
           </li>
           <li className="nav-list-element">
@@ -54,8 +75,9 @@ class NavBar extends Component {
 function mapStateToProps(state) {
   return {
     snaps: state.snaps.all,
+    user: state.user.user,
   };
 }
 
 // <li><div id="nav-bottom-title"><h1 id="nav-bottom-text">SnapApp &#9400;</h1></div></li>
-export default connect(mapStateToProps, { signoutUser })(NavBar);
+export default connect(mapStateToProps, { signoutUser, getUserObject })(NavBar);

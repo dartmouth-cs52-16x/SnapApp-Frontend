@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { getUserObject } from '../actions';
+import { getUserObject, updateProfile } from '../actions';
 import { connect } from 'react-redux';
-
+import jQuery from 'jquery';
 
 class Profile extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Profile extends Component {
       snapScore: 71,
       topFriendName: 'None',
       streak: 23,
-      groups: 5,
+      friends: 0,
     };
   }
 
@@ -40,7 +40,21 @@ class Profile extends Component {
     }
     this.setState({
       topFriendName: topFriend,
+      friends: props.user.friends.length,
     });
+
+    if (props.user.profilePicURL) {
+      jQuery.get(props.user.profilePicURL, (data) => {
+        console.log('THIS IS THE DATA', data);
+        this.setState({
+          profilePictureURL: data,
+        });
+      });
+    } else {
+      this.setState({
+        profilePictureURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
+      });
+    }
   }
 
   render() {
@@ -58,7 +72,7 @@ class Profile extends Component {
             <ul className="profile-ul1">
               <li><i className="material-icons">star</i> SNAP SCORE <span id="fl">{this.props.user.snapScore}</span></li>
               <li><i className="material-icons">person_pin</i> TOP FRIEND <span id="fl">{this.state.topFriendName}</span></li>
-              <li><i className="material-icons">group</i> GROUPS <span id="fl">{this.state.groups}</span></li>
+              <li><i className="material-icons">group</i> FRIENDS <span id="fl">{this.state.friends}</span></li>
             </ul>
           </div>
         </div>
@@ -73,4 +87,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getUserObject })(Profile);
+export default connect(mapStateToProps, { getUserObject, updateProfile })(Profile);

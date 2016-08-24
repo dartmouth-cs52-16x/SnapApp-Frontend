@@ -53,7 +53,7 @@ export function getUserObject() {
   return (dispatch) => {
     axios.get(`${BASE_URL}/profile/`, { headers: { authorization: localStorage.getItem('token') } })
     .then((response) => {
-      console.log(response);
+      console.log('\n\nUSER RECEIVED', response);
       dispatch({
         type: ActionTypes.GET_USER,
         payload: response.data,
