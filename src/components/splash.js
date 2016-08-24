@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 
-
 class Splash extends Component {
   constructor(props) {
     super(props);
