@@ -41,7 +41,7 @@ class ShowSnap extends Component {
         caption: props.snap.caption,
       });
       jQuery.get(props.snap.pictureURL, (data) => {
-        console.log('THIS IS THE DATA', data);
+        // console.log('THIS IS THE DATA', data);
         this.setState({
           src: data,
         });

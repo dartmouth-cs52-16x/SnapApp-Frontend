@@ -16,7 +16,6 @@ class Friends extends Component {
   }
 
   componentWillMount() {
-    console.log('getting user object');
     this.props.getUserObject();
   }
 
@@ -31,6 +30,7 @@ class Friends extends Component {
         console.log('friend!', props.user.friends[i]);
       }
     }
+    console.log('CURRENT STAE', this.state);
   }
 
   addFriend() {
@@ -50,9 +50,10 @@ class Friends extends Component {
   render() {
     let receivedFriends = 1;
     let friendsAll = this.state.friends.map((friend) => {
+      console.log('mapping');
       receivedFriends = 0;
       return (
-        <div className="single-friend-full">
+        <div key={friend._id} className="single-friend-full">
           <div id="sff-icon"><i className="material-icons">person</i></div>
           <p>{friend.name}</p>
           <p id="jfr">{friend.score}<i className="material-icons">star</i></p>
@@ -92,18 +93,19 @@ class Friends extends Component {
         <div className="Friends">
           <div id="show-snap-header">FRIENDS</div>
           <div className="friends-inner">
-            <h1>Add A New Friend</h1>
+            <h1>Friends List</h1>
+            <div id="FriendList" className="tam">
+              You currently have no friends :/
+            </div>
+            <h1 id="bbt">Add New Friends</h1>
             <div>
               <input placeholder="Username" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
             </div>
-            <div id="splash-signup" className="submit-in-sui">
+            <div id="friends-add" className="submit-in-friends">
               <div>
-                <a onClick={this.addFriend}>ADD</a>
+                <a onClick={this.addFriend}><i id="afi" className="material-icons">person_add</i></a>
               </div>
             </div>
-          </div>
-          <div>
-            You currently have no friends. Add some above!
           </div>
         </div>
       );

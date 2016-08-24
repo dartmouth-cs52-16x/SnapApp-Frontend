@@ -913,7 +913,6 @@ body {
   margin-top: -3px;
 }
 
-
 /* ============= FRIENDS ======== */
 
 .friends-inner {
@@ -953,6 +952,11 @@ body {
 #FriendList {
   text-align: left;
   margin-top: 10px;
+}
+
+.tam {
+  display: inline;
+  text-align: center;
 }
 
 .single-friend-full {

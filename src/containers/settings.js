@@ -40,7 +40,7 @@ class Settings extends Component {
     });
     if (props.user.profilePicURL) {
       jQuery.get(props.user.profilePicURL, (data) => {
-        console.log('THIS IS THE DATA', data);
+        // console.log('THIS IS THE DATA', data);
         this.setState({
           pic: data,
         });
