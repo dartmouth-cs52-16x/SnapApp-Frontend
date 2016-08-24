@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
+import FacebookLogin from '../containers/fb.js';
 
 class Splash extends Component {
   constructor(props) {
@@ -45,10 +46,13 @@ class Splash extends Component {
           </div>
           <div id="splash-signin">
             Already have an account? <Link to="/signin" onClick={this.hideDisplay} className="SignIn">Sign in.</Link>
-            <Link to="/auth/facebook">Login with Facebook</Link>
+            <div className="Fb">
+              <FacebookLogin />
+              {this.props.children}
+            </div>
           </div>
           <div id="splash-logo">
-            <img role="presentation" src="http://lucafoschini.com/jekyll-vapor//images/vapor_logo.png"></img>
+            <img role="presentation" src="../../images/snapapp-logo.png"></img>
           </div>
         </div>
       );

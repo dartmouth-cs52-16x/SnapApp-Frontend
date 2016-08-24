@@ -232,6 +232,7 @@ body {
 }
 
 #home-snap-p1 {
+  font-size: 30px;
   margin-top: -20px;
 }
 
@@ -760,7 +761,6 @@ body {
 }
 
 .SplashPage {
-  background-repeat:no-repeat;
   width: 100%;
   height: 100%;
 }
@@ -784,6 +784,7 @@ body {
   text-align: center;
   background-color: rgba(255, 255, 255, 0.5);
   background-repeat:no-repeat;
+  overflow: scroll;
 }
 
 #splash-signin {
@@ -791,9 +792,8 @@ body {
 }
 
 #splash-logo img {
-  margin-top: 50px;
+  margin-top: 20px;
   margin-bottom: 50px;
-  border-radius: 50%;
   width: 180px;
   length: 180px;
 }
@@ -909,6 +909,10 @@ body {
 #bbt {
   padding-top: 15px;
   border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+#hsflp {
+  float: right;
 }
 
 #black {
@@ -1055,6 +1059,9 @@ body {
   margin-left: auto;
   margin-right: auto;
   border: none;
+}
+.Fb {
+  margin-top: 10px;
 }
 
 #ns-checkname {
