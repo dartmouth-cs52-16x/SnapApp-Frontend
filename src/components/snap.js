@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
+const prettydate = require('pretty-date');
 
 const Snap = (props) => {
   console.log('DISPLAYED SNAP PROPS', props);
+  let date = prettydate.format(new Date(props.time));
   // id="home-snap-first"
   if (props.spec === 'first') {
     if (props.timer === 1) {
@@ -15,9 +17,9 @@ const Snap = (props) => {
             </div>
           </Link>
           <div className="home-snap-link-div">
-            <p id="home-snap-p1">Received from {props.fromUser}</p>
-            <p>{props.timer} second</p>
-            <p>{props.time} </p>
+            <p id="hsflp">{date} </p>
+            <p id="home-snap-p1">Snap from {props.fromUser}</p>
+            <p>Duration {props.timer} second</p>
           </div>
         </div>
       );
@@ -31,9 +33,9 @@ const Snap = (props) => {
             </div>
           </Link>
           <div className="home-snap-link-div">
-            <p id="home-snap-p1">Received from {props.fromUser}</p>
-            <p>{props.timer} seconds</p>
-            <p>{props.time} </p>
+            <p id="hsflp">{date} </p>
+            <p id="home-snap-p1">Snap from {props.fromUser}</p>
+            <p>Duration {props.timer} seconds</p>
           </div>
         </div>
       );
@@ -49,9 +51,9 @@ const Snap = (props) => {
             </div>
           </Link>
           <div className="home-snap-link-div">
-            <p id="home-snap-p1">Received from {props.fromUser}</p>
-            <p>{props.timer} second</p>
-            <p>{props.time} </p>
+            <p id="hsflp">{date} </p>
+            <p id="home-snap-p1">Snap from {props.fromUser}</p>
+            <p>Duration {props.timer} second</p>
           </div>
         </div>
       );
@@ -65,9 +67,9 @@ const Snap = (props) => {
             </div>
           </Link>
           <div className="home-snap-link-div">
-            <p id="home-snap-p1">Received from {props.fromUser}</p>
-            <p>{props.timer} seconds</p>
-            <p>{props.time} </p>
+            <p id="hsflp">{date} </p>
+            <p id="home-snap-p1">Snap from {props.fromUser}</p>
+            <p>Duration {props.timer} seconds</p>
           </div>
         </div>
       );
