@@ -8,10 +8,10 @@ class Profile extends Component {
     super(props);
 
     this.state = {
-      fullname: '',
-      username: '',
+      fullname: this.props.user.username,
+      username: this.props.user.username,
       email: '',
-      profilePictureURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
+      profilePictureURL: this.props.user.profilePictureURL,
       snapScore: 0,
       topFriendName: 'None',
       streak: 0,
@@ -44,17 +44,23 @@ class Profile extends Component {
       friends: props.user.friends.length,
     });
 
-    if (props.user.profilePicURL) {
-      jQuery.get(props.user.profilePicURL, (data) => {
-        // console.log('THIS IS THE DATA', data);
-        this.setState({
-          profilePictureURL: data,
-        });
+    if (props.user.facebookUserID) {
+      this.setState({
+        profilePictureURL: this.props.user.profilePictureURL,
       });
     } else {
-      this.setState({
-        profilePictureURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
-      });
+      if (props.user.profilePicURL) {
+        jQuery.get(props.user.profilePicURL, (data) => {
+          // console.log('THIS IS THE DATA', data);
+          this.setState({
+            profilePictureURL: data,
+          });
+        });
+      } else {
+        this.setState({
+          profilePictureURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
+        });
+      }
     }
   }
 

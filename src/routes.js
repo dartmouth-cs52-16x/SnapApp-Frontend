@@ -10,6 +10,7 @@ import RequireAuth from './containers/require-auth';
 import SignUp from './containers/sign-up';
 import SignIn from './containers/sign-in';
 import Friends from './containers/friends.js';
+import fb from './containers/fb';
 
 
 export default(
@@ -22,5 +23,6 @@ export default(
     <Route path="/friends" component={RequireAuth(Friends)} />
     <Route path="/signup" component={SignUp} />
     <Route path="/signin" component={SignIn} />
+    <Route path="/auth/facebook" component={fb} />
   </Route>
 );
