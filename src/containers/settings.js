@@ -118,9 +118,11 @@ class Settings extends Component {
   }
 
   deleteProfile() {
-    this.props.deleteUser(localStorage.getItem('token'));
-    this.props.signoutUser();
-    // backend function
+    if (window.confirm('Are you sure you want to delete this post, this action cannot be undone!')) {
+      this.props.deleteUser(localStorage.getItem('token'));
+      this.props.signoutUser();
+      // backend function
+    }
   }
 
   render() {

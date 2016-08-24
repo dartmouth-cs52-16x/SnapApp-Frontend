@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Snap = (props) => {
+  console.log('DISPLAYED SNAP PROPS', props);
   // id="home-snap-first"
   if (props.spec === 'first') {
     if (props.timer === 1) {
@@ -16,6 +17,7 @@ const Snap = (props) => {
           <div className="home-snap-link-div">
             <p id="home-snap-p1">Received from {props.fromUser}</p>
             <p>{props.timer} second</p>
+            <p>{props.time} </p>
           </div>
         </div>
       );
@@ -31,6 +33,7 @@ const Snap = (props) => {
           <div className="home-snap-link-div">
             <p id="home-snap-p1">Received from {props.fromUser}</p>
             <p>{props.timer} seconds</p>
+            <p>{props.time} </p>
           </div>
         </div>
       );
@@ -48,6 +51,7 @@ const Snap = (props) => {
           <div className="home-snap-link-div">
             <p id="home-snap-p1">Received from {props.fromUser}</p>
             <p>{props.timer} second</p>
+            <p>{props.time} </p>
           </div>
         </div>
       );
@@ -63,6 +67,7 @@ const Snap = (props) => {
           <div className="home-snap-link-div">
             <p id="home-snap-p1">Received from {props.fromUser}</p>
             <p>{props.timer} seconds</p>
+            <p>{props.time} </p>
           </div>
         </div>
       );
