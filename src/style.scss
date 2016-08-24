@@ -23,6 +23,10 @@ body {
   display: flex;
   flex-direction: column;
 }
+.content-row {
+  display: flex;
+  flex-direction: row;
+}
 
 #layout {
   width: 100%;
@@ -867,6 +871,11 @@ body {
   margin-bottom: 50px;
 }
 
+.submit-in-sui2 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .Sign h1 {
   font-size: 50px;
 }
@@ -884,4 +893,23 @@ body {
 #ppicon {
   float: right;
   margin-top: -3px;
+}
+
+
+/* ============= FRIENDS ======== */
+
+#Friends {
+  margin-bottom: 100px;
+}
+
+#FriendList {
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0.7);
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }

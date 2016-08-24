@@ -46,7 +46,7 @@
     "axios": "^0.13.1",
     "jquery": "^3.1.0",
     "moment": "^2.14.1",
-    "mongoose": "^4.5.9",
+    "mongoose": "^4.5.10",
     "rc-slider": "^4.0.1",
     "react": "^0.14.8",
     "react-dom": "^15.3.1",
