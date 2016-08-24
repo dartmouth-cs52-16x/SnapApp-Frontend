@@ -13,8 +13,12 @@ class NavBar extends Component {
   }
 
   componentWillMount() {
-    console.log('getting user object');
-    this.props.getUserObject();
+    //  used to make sure that the token has been set before calling get User
+    setTimeout(() => {
+      console.log('getting user object');
+      console.log('token', localStorage.getItem('token'));
+      this.props.getUserObject();
+    }, 500);
   }
 
   componentWillReceiveProps(props) {
@@ -25,13 +29,21 @@ class NavBar extends Component {
       });
     } else {
       jQuery.get(props.user.profilePicURL, (data) => {
-        console.log('THIS IS THE DATA', data);
+        // console.log('THIS IS THE DATA', data);
         this.setState({
           pic: data,
         });
       });
     }
   }
+
+  // componentDidUpdate() {
+  //   if (!this.props.user) {
+  //     console.log('getting user object');
+  //     console.log('token', localStorage.getItem('token'));
+  //     this.props.getUserObject();
+  //   }
+  // }
 
   render() {
     return (

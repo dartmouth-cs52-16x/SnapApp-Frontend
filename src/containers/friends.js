@@ -23,10 +23,16 @@ class Friends extends Component {
   }
 
   componentWillReceiveProps(props) {
+    console.log('RECEIVED USER', props.user);
     this.setState({
       username: props.user.username,
       friends: props.user.friends,
     });
+    if (props.user) {
+      for (let i = 0; i < props.user.friends.length; i++) {
+        console.log('friend!', props.user.friends[i]);
+      }
+    }
   }
 
 
@@ -44,7 +50,7 @@ class Friends extends Component {
         console.log('yay');
         return (
           <div>
-            <h1> {user.name} </h1>
+            <h1> asdf </h1>
           </div>
         );
       });
@@ -57,7 +63,7 @@ class Friends extends Component {
         <div className="sui-inner">
           <h1>Friends</h1>
           <div>
-            <input placeholder="Search for New Friend" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
+            <input placeholder="Add New Friend" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
           </div>
           <div className="submit-in-sui2">
             <div>
@@ -66,7 +72,7 @@ class Friends extends Component {
           </div>
         </div>
         <div>
-          {this.renderFriends()}
+          {this.renderFriends}
         </div>
       </div>
     );
