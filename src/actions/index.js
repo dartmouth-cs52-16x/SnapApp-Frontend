@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-// const BASE_URL = 'http://localhost:9090/api';
-const BASE_URL = 'https://snapapp-backend.herokuapp.com/api';
+const BASE_URL = 'http://localhost:9090/api';
+// const BASE_URL = 'https://snapapp-backend.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_SNAPS: 'FETCH_SNAPS',
@@ -25,7 +25,7 @@ export function updateProfile(fields) {
         type: ActionTypes.UPDATE_PROFILE,
         payload: null,
       });
-      // do something with response.data  (some json)
+      // do something with response.data  (some json)d
     }).catch(error => {
       // hit an error do something else!
       console.log('Error updating post');
