@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-// const BASE_URL = 'http://localhost:9090/api';
-const BASE_URL = 'http://snapapp-backend.herokuapp.com/api';
+const BASE_URL = 'http://localhost:9090/api';
+// const BASE_URL = 'http://snapapp-backend.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_SNAPS: 'FETCH_SNAPS',
@@ -130,6 +130,23 @@ export function signoutUser() {
       type: ActionTypes.DEAUTH_USER,
     });
     browserHistory.push('/');
+  };
+}
+
+export function deleteUser(token) {
+  console.log('DELETE USER TOKEN', token);
+  return (dispatch) => {
+    console.log('USER TOKEN IN INDEX', localStorage.getItem('token'));
+    axios.delete(`${BASE_URL}/user`, { headers: { authorization: token } }).then(response => {
+      dispatch({
+        type: ActionTypes.DELETE_POST,
+        payload: null,
+      });
+      // do something with response.data  (some json)
+    }).catch(error => {
+      // hit an error do something else!
+      console.log('Error deleting post by id');
+    });
   };
 }
 

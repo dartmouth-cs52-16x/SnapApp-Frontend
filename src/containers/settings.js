@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserObject, updateProfile, signoutUser } from '../actions';
+import { getUserObject, updateProfile, signoutUser, deleteUser } from '../actions';
 import Dropzone from 'react-dropzone';
 import jQuery from 'jquery';
 
@@ -29,6 +29,7 @@ class Settings extends Component {
   componentWillMount() {
     console.log('getting user object');
     this.props.getUserObject();
+    console.log('USER TOKEN', localStorage.getItem('token'));
   }
 
   componentWillReceiveProps(props) {
@@ -117,6 +118,7 @@ class Settings extends Component {
   }
 
   deleteProfile() {
+    this.props.deleteUser(localStorage.getItem('token'));
     this.props.signoutUser();
     // backend function
   }
@@ -180,4 +182,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { getUserObject, updateProfile, signoutUser })(Settings);
+export default connect(mapStateToProps, { getUserObject, updateProfile, signoutUser, deleteUser })(Settings);
