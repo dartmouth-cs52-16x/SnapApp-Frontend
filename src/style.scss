@@ -1,5 +1,5 @@
 html, body {
-  min-height: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
 }
@@ -7,6 +7,7 @@ html, body {
 /* ================ UNIVERSAL ================ */
 
 body {
+  min-height: 100%;
   font-family: "Work Sans", sans-serif;
   color: rgb(10%, 10%, 10%);
   background: darken(white, 10%);
@@ -47,6 +48,7 @@ body {
 }
 
 .NavBar {
+  position: fixed;
   min-height: 100%;
   float: left;
   margin-left: 0px;
@@ -760,6 +762,7 @@ body {
   height: 220px;
   font-family: 'Baloo Tamma', 'Helvetica Neue';
   font-size: 80px;
+  margin-top: 15px;
 }
 
 #splash-title h1 {
@@ -767,8 +770,10 @@ body {
 }
 
 .splash-full {
+  position: fixed;
   margin-top: 0;
-  min-height: 100%;
+  height: 100%;
+  width: 100%;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.5);
   background-repeat:no-repeat;
