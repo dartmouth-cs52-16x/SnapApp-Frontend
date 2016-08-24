@@ -236,7 +236,7 @@ class CreateSnap extends Component {
                 <div>
                   <input placeholder="Recipient's username" value={this.state.sentTo} onChange={this.snapSentToSet} />
                 </div>
-                <div>CLICK USERNAME TO SELECT</div>
+                <div>CLICK OR TYPE USERNAME</div>
                 {friendsAll}
                 <div>
                   <input placeholder="Caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
@@ -274,6 +274,8 @@ class CreateSnap extends Component {
                 <div>
                   <input placeholder="Recipient's username" value={this.state.sentTo} onChange={this.snapSentToSet} />
                 </div>
+                <div>CLICK OR TYPE USERNAME</div>
+                {friendsAll}
                 <div>
                   <input placeholder="Caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
                 </div>
