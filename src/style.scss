@@ -151,6 +151,7 @@ body {
 }
 
 #recv-snaps-end {
+  margin-bottom: 50px;
   border-radius: 50%;
   width: 15px;
   height: 15px;
@@ -228,6 +229,16 @@ body {
 
 /* ================= SINGLE SNAP VIEW DISPLAY =========== */
 
+#show-snap-header {
+  padding-right: 20px;
+  height: 30px;
+  margin-top: 40px;
+  display: inline-block;
+  font-weight: 100;
+  font-size: 14px;
+  margin-left: 50px;
+}
+
 #show-snap-full {
   font-size: 40px;
   margin-left: 150px;
@@ -240,8 +251,39 @@ body {
   margin-left: auto;
 }
 
+#show-snap-tops {
+  margin-right: 10%;
+}
+
+#show-snap-caption {
+  font-size: 16px;
+  border-top: 1px solid rgba(0,0,0,0.2);
+  padding-top: 10px;
+  text-align: center;
+}
+
+#timer-div {
+  margin-top: 40px;
+  float: right;
+}
+
+#timer-div i {
+  font-size: 25px;
+}
+
 #show-snap-box img {
   width: 500px;
+}
+
+.show-snap-outer {
+  border-radius: 5px;
+  padding-top: 40px;
+  padding-bottom: 10px;
+  width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(11,181,255,0.5);
+  //background-color: rgba(0,0,0,0.5);
 }
 
 /* ================ CREATE SNAP CONTAINER ================ */
