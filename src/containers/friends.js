@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserObject } from '../actions';
-import Friend from '../components/friend.js';
 
 class Friends extends Component {
   constructor(props) {
@@ -17,7 +16,6 @@ class Friends extends Component {
   }
 
   componentWillMount() {
-    console.log('getting user object');
     this.props.getUserObject();
   }
 
@@ -32,6 +30,7 @@ class Friends extends Component {
         console.log('friend!', props.user.friends[i]);
       }
     }
+    console.log('CURRENT STAE', this.state);
   }
 
   addFriend() {
@@ -51,9 +50,10 @@ class Friends extends Component {
   render() {
     let receivedFriends = 1;
     let friendsAll = this.state.friends.map((friend) => {
+      console.log('mapping');
       receivedFriends = 0;
       return (
-        <div className="home-snap-full" id="home-snap-first">
+        <div key={friend._id} className="home-snap-full" id="home-snap-first">
           Name: {friend.name}
           Score: {friend.score}
         </div>
