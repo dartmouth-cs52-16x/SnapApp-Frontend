@@ -275,6 +275,8 @@ class CreateSnap extends Component {
                 <div>
                   <input placeholder="Recipient's username" value={this.state.sentTo} onChange={this.snapSentToSet} />
                 </div>
+                <div>CLICK FRIENDS TO SELECT</div>
+                {friendsAll}
                 <div>
                   <input placeholder="Caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
                 </div>
