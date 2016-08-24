@@ -5,23 +5,31 @@ class Friends extends Component {
     super(props);
 
     this.state = {
-      groupname: 'Placeholder Group Name',
-      members: 6,
+      newFriend: '',
+      friend: '',
     };
+
+    this.friendNameWasChanged = this.friendNameWasChanged.bind(this);
+  }
+
+  friendNameWasChanged(event) {
+    this.setState({
+      newFriend: event.target.value,
+    });
   }
 
   render() {
     return (
-      <div className="groups-top">
-        <div id="groups-header">Groups</div>
-        <div className="groups">
-           <h1>Your Groups</h1>
-          <div className="groups-holder-settings">
-            <ul className="groups-ul1">
-              <li>  GROUP NAME <span>{this.state.groupname}</span></li>
-              <li>  MEMBERS <span>{this.state.members}</span></li>
-            </ul>
-             <div id="groups-change-info">EDIT GROUP</div>
+      <div className="Friends">
+        <div className="sui-inner">
+          <h1>Friends</h1>
+          <div>
+            <input placeholder="Search for New Friend" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
+          </div>
+          <div className="submit-in-sui2">
+            <div>
+              <a>SUBMIT</a>
+            </div>
           </div>
         </div>
       </div>
