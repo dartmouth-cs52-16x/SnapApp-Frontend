@@ -16,6 +16,7 @@ class Profile extends Component {
       topFriendName: 'None',
       streak: 0,
       friends: 0,
+      groups: 0,
     };
   }
 
