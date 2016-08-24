@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-// const BASE_URL = 'http://localhost:9090/api';
-const BASE_URL = 'https://snapapp-backend.herokuapp.com/api';
+const BASE_URL = 'http://localhost:9090/api';
+// const BASE_URL = 'https://snapapp-backend.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_SNAPS: 'FETCH_SNAPS',
@@ -15,6 +15,7 @@ export const ActionTypes = {
   GET_USER: 'GET_USER',
   UPDATE_PROFILE: 'UPDATE_PROFILE',
   ADD_FRIEND: 'ADD_FRIEND',
+  FB_AUTH: 'FB_AUTH',
 };
 
 export function updateProfile(fields) {
@@ -227,5 +228,43 @@ export function signupUser({ email, password, username }) {
     .catch((error) => {
       dispatch(authError('Sign Up Failed', error.response.data));
     });
+  };
+}
+
+export function fbAuth(accessToken) {
+  console.log('authenticating with facebook...');
+  console.log(`ACCESS TOKEN: ${accessToken}`);
+  return (dispatch) => {
+    console.log('sending token to facebook...');
+    axios.get(`https://graph.facebook.com/me?fields=id,name,picture.type(large)&access_token=${accessToken}`)
+    .then(response => {
+      console.log(response);
+
+
+      const facebookUserID = response.data.id;
+      const facebookUserName = response.data.name;
+      const facebookUserPicture = response.data.picture.data.url;
+
+      console.log(`facebookUserID: ${facebookUserID}`);
+      console.log(`facebookUserName: ${facebookUserName}`);
+      console.log(`facebookUserPicture: ${facebookUserPicture}`);
+
+      axios.post(`${BASE_URL}/auth/facebook`, { facebookUserID, facebookUserName, facebookUserPicture })
+        .then(response2 => {
+          console.log(`fb auth called for user id: ${facebookUserID}`);
+          console.log(response2);
+
+          dispatch({
+            type: ActionTypes.FB_AUTH,
+            payload: facebookUserID,
+          });
+          localStorage.setItem('token', response2.data.token);
+          console.log(`token set as: ${response2.data.token}`);
+          browserHistory.push('/profile');
+        });
+    })
+  .catch((error) => {
+    dispatch(authError(`Sign In Failed: ${error.response.data}`));
+  });
   };
 }

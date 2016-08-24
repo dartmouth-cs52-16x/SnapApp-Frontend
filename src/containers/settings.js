@@ -38,17 +38,23 @@ class Settings extends Component {
       email: props.user.email,
       password: props.user.password,
     });
-    if (props.user.profilePicURL) {
-      jQuery.get(props.user.profilePicURL, (data) => {
-        // console.log('THIS IS THE DATA', data);
-        this.setState({
-          pic: data,
-        });
+    if (props.user.facebookUserID) {
+      this.setState({
+        pic: this.props.user.profilePictureURL,
       });
     } else {
-      this.setState({
-        pic: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
-      });
+      if (props.user.profilePicURL) {
+        jQuery.get(props.user.profilePicURL, (data) => {
+          // console.log('THIS IS THE DATA', data);
+          this.setState({
+            pic: data,
+          });
+        });
+      } else {
+        this.setState({
+          pic: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
+        });
+      }
     }
   }
 

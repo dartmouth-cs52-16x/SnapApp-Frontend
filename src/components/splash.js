@@ -45,6 +45,7 @@ class Splash extends Component {
           </div>
           <div id="splash-signin">
             Already have an account? <Link to="/signin" onClick={this.hideDisplay} className="SignIn">Sign in.</Link>
+            <Link to="/auth/facebook">Login with Facebook</Link>
           </div>
           <div id="splash-logo">
             <img role="presentation" src="http://lucafoschini.com/jekyll-vapor//images/vapor_logo.png"></img>

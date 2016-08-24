@@ -23,17 +23,23 @@ class NavBar extends Component {
 
   componentWillReceiveProps(props) {
     console.log('PROFILE PIC URL NAVBAR', props.user.profilePicURL);
-    if (!props.user.profilePicURL) {
+    if (props.user.facebookUserID) {
       this.setState({
-        pic: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
+        pic: this.props.user.profilePictureURL,
       });
     } else {
-      jQuery.get(props.user.profilePicURL, (data) => {
-        // console.log('THIS IS THE DATA', data);
+      if (!props.user.profilePicURL) {
         this.setState({
-          pic: data,
+          pic: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
         });
-      });
+      } else {
+        jQuery.get(props.user.profilePicURL, (data) => {
+          // console.log('THIS IS THE DATA', data);
+          this.setState({
+            pic: data,
+          });
+        });
+      }
     }
   }
 
