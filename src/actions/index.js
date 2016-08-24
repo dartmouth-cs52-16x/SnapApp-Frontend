@@ -14,6 +14,7 @@ export const ActionTypes = {
   AUTH_ERROR: 'AUTH_ERROR',
   GET_USER: 'GET_USER',
   UPDATE_PROFILE: 'UPDATE_PROFILE',
+  ADD_FRIEND: 'ADD_FRIEND',
 };
 
 export function updateProfile(fields) {
@@ -22,6 +23,23 @@ export function updateProfile(fields) {
       console.log(response.data);
       dispatch({
         type: ActionTypes.UPDATE_PROFILE,
+        payload: null,
+      });
+      // do something with response.data  (some json)
+    }).catch(error => {
+      // hit an error do something else!
+      console.log('Error updating post');
+    });
+  };
+}
+
+// takes friend: array
+export function addFriendToUser(fields) {
+  return (dispatch) => {
+    axios.put(`${BASE_URL}/friends/`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      console.log(response.data);
+      dispatch({
+        type: ActionTypes.ADD_FRIEND,
         payload: null,
       });
       // do something with response.data  (some json)
