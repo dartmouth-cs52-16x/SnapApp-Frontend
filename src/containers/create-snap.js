@@ -22,8 +22,11 @@ class CreateSnap extends Component {
       snapReady: 0,
       pic: '',
       timerVal: 5,
+      friends: [],
+      sentTo: '',
     };
 
+    this.handleCheck = this.handleCheck.bind(this);
     this.resetPage = this.resetPage.bind(this);
     this.snapshot = this.snapshot.bind(this);
     this.choseWebcam = this.choseWebcam.bind(this);
@@ -41,6 +44,13 @@ class CreateSnap extends Component {
 
   componentWillMount() {
     this.props.getUserObject();
+  }
+
+  componentWillReceiveProps(props) {
+    console.log('RECEIVED USER', props.user);
+    this.setState({
+      friends: props.user.friends,
+    });
   }
 
   onSubmit() {
@@ -100,6 +110,13 @@ class CreateSnap extends Component {
     this.refs.dropzone.open();
   }
 
+  handleCheck(event) {
+    this.setState({
+      sentTo: event.target.value,
+    });
+  }
+
+
   handleOnChange(event) {
     this.setState({
       timerVal: event.target.value,
@@ -154,6 +171,13 @@ class CreateSnap extends Component {
   }
 
   render() {
+    let friendsAll = this.state.friends.map((friend) => {
+      return (
+        <div id="ns-checkname-div">
+          <input id="ns-checkname" type="text" onClick={this.handleCheck} value={friend.name} />
+        </div>
+     );
+    });
     if (this.state.snapReady === 0) {
       // snap not ready to send
       if (this.state.usingWebcam === 1) {
@@ -213,6 +237,8 @@ class CreateSnap extends Component {
                 <div>
                   <input placeholder="Recipient's username" value={this.state.sentTo} onChange={this.snapSentToSet} />
                 </div>
+                <div>CLICK FRIENDS TO SELECT</div>
+                {friendsAll}
                 <div>
                   <input placeholder="Caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
                 </div>
