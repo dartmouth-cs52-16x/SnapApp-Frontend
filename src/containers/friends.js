@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserObject } from '../actions';
-import Friend from '../components/friend.js';
 
 class Friends extends Component {
   constructor(props) {
@@ -53,9 +52,10 @@ class Friends extends Component {
     let friendsAll = this.state.friends.map((friend) => {
       receivedFriends = 0;
       return (
-        <div className="home-snap-full" id="home-snap-first">
-          Name: {friend.name}
-          Score: {friend.score}
+        <div className="single-friend-full">
+          <div id="sff-icon"><i className="material-icons">person</i></div>
+          <p>{friend.name}</p>
+          <p id="jfr">{friend.score}<i className="material-icons">star</i></p>
         </div>
       );
     });
@@ -70,17 +70,18 @@ class Friends extends Component {
         <div className="Friends">
           <div id="show-snap-header">FRIENDS</div>
           <div className="friends-inner">
-            <h1>Add A New Friend</h1>
+            <h1>Friends List</h1>
+            <div id="FriendList">
+              {friendsAll}
+            </div>
+            <h1 id="bbt">Add New Friends</h1>
             <div>
               <input placeholder="Username" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
             </div>
-            <div className="submit-in-friends">
+            <div id="friends-add" className="submit-in-friends">
               <div>
-                <a onClick={this.addFriend}>SUBMIT</a>
+                <a onClick={this.addFriend}><i id="afi" className="material-icons">person_add</i></a>
               </div>
-            </div>
-            <div id="FriendList">
-              {friendsAll}
             </div>
           </div>
         </div>
@@ -95,9 +96,9 @@ class Friends extends Component {
             <div>
               <input placeholder="Username" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
             </div>
-            <div className="submit-in-sui3">
+            <div id="splash-signup" className="submit-in-sui">
               <div>
-                <a onClick={this.addFriend}>SUBMIT</a>
+                <a onClick={this.addFriend}>ADD</a>
               </div>
             </div>
           </div>
