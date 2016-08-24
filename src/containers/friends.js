@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserObject } from '../actions';
-
+import Friend from '../components/friend.js';
 
 class Friends extends Component {
   constructor(props) {
@@ -9,12 +9,11 @@ class Friends extends Component {
 
     this.state = {
       newFriend: '',
-      username: '',
       friends: [],
     };
 
     this.friendNameWasChanged = this.friendNameWasChanged.bind(this);
-    this.renderFriends = this.renderFriends.bind(this);
+    this.addFriend = this.addFriend.bind(this);
   }
 
   componentWillMount() {
@@ -35,6 +34,13 @@ class Friends extends Component {
     }
   }
 
+  addFriend() {
+    const newArray = this.state.friends.slice();
+    newArray.push({ name: this.state.newFriend, score: 69 });
+    this.setState({ friends: newArray });
+    // add friend to database here
+  }
+
 
   friendNameWasChanged(event) {
     this.setState({
@@ -42,40 +48,65 @@ class Friends extends Component {
     });
   }
 
-  renderFriends() {
-    if (this.state.friends) {
-      this.state.friends.map(user => {
-        console.log('friend received');
-        console.log(user.name);
-        console.log('yay');
-        return (
-          <div>
-            <h1> asdf </h1>
-          </div>
-        );
-      });
-    }
-  }
-
   render() {
-    return (
-      <div className="Friends">
-        <div className="sui-inner">
-          <h1>Friends</h1>
-          <div>
-            <input placeholder="Add New Friend" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
-          </div>
-          <div className="submit-in-sui2">
+    let receivedFriends = 1;
+    let friendsAll = this.state.friends.map((friend) => {
+      receivedFriends = 0;
+      return (
+        <div className="home-snap-full" id="home-snap-first">
+          Name: {friend.name}
+          Score: {friend.score}
+        </div>
+      );
+    });
+      /* receivedFriends = 0;
+      return (
+        <Friend name={friend.name} score={friend.score} />
+      );
+    });*/
+    if (receivedFriends === 0) {
+      // did recieve friends
+      return (
+        <div className="Friends">
+          <div id="show-snap-header">FRIENDS</div>
+          <div className="friends-inner">
+            <h1>Add A New Friend</h1>
             <div>
-              <a>SUBMIT</a>
+              <input placeholder="Username" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
+            </div>
+            <div className="submit-in-friends">
+              <div>
+                <a onClick={this.addFriend}>SUBMIT</a>
+              </div>
+            </div>
+            <div id="FriendList">
+              {friendsAll}
             </div>
           </div>
         </div>
-        <div>
-          {this.renderFriends}
+      );
+    } else {
+      // did not reieve friends
+      return (
+        <div className="Friends">
+          <div id="show-snap-header">FRIENDS</div>
+          <div className="friends-inner">
+            <h1>Add A New Friend</h1>
+            <div>
+              <input placeholder="Username" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
+            </div>
+            <div className="submit-in-sui3">
+              <div>
+                <a onClick={this.addFriend}>SUBMIT</a>
+              </div>
+            </div>
+          </div>
+          <div>
+            You currently have no friends. Add some above!
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
  }
 

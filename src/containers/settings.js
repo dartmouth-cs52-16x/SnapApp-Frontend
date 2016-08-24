@@ -163,7 +163,7 @@ class Settings extends Component {
               </ul>
               <div className="update-prof-pic">
                 {this.state.pic ?
-                  <div id="tam"><img alt="null" src={this.state.pic} />NEW PROFILE PICTURE</div>
+                  <div id="tam"><img alt="null" src={this.state.pic} />PROFILE PICTURE</div>
                   : null}
               </div>
               <div onClick={this.updateInfo} id="settings-change-info">SAVE</div>
