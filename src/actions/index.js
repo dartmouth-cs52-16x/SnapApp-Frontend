@@ -13,7 +13,25 @@ export const ActionTypes = {
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
   GET_USER: 'GET_USER',
+  UPDATE_PROFILE: 'UPDATE_PROFILE',
 };
+
+export function updateProfile(fields) {
+  return (dispatch) => {
+    axios.put(`${BASE_URL}/profile/`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
+      console.log(response.data);
+      dispatch({
+        type: ActionTypes.UPDATE_PROFILE,
+        payload: null,
+      });
+      // do something with response.data  (some json)
+    }).catch(error => {
+      // hit an error do something else!
+      console.log('Error updating post');
+    });
+  };
+}
+
 
 export function checkUserExists(fields) {
   console.log(fields);
