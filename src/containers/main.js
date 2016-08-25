@@ -5,9 +5,29 @@ import Snap from '../components/snap.js';
 // import { Link } from 'react-router';
 
 class Main extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      timeout: null,
+    };
+  }
+
+  //  get snaps every 4.5 secs
   componentWillMount() {
+    console.log('GETTING SNAPS');
     this.props.getSnaps();
+    const refreshInterval = setInterval(() => {
+      console.log('GETTING SNAPS');
+      this.props.getSnaps();
+    }, 4500);
+    this.setState({
+      timeout: refreshInterval,
+    });
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.state.timeout);
   }
 
   render() {
