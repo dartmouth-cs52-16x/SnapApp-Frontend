@@ -40,7 +40,6 @@ class Friends extends Component {
     this.props.addFriendToUser({ friends: newArray });
   }
 
-
   friendNameWasChanged(event) {
     this.setState({
       newFriend: event.target.value,
@@ -71,10 +70,6 @@ class Friends extends Component {
         <div className="Friends">
           <div id="show-snap-header">FRIENDS</div>
           <div className="friends-inner">
-            <h1>Friends List</h1>
-            <div id="FriendList">
-              {friendsAll}
-            </div>
             <h1 id="bbt">Add New Friends</h1>
             <div>
               <input placeholder="Username" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
@@ -83,6 +78,10 @@ class Friends extends Component {
               <div>
                 <a onClick={this.addFriend}><i id="afi" className="material-icons">person_add</i></a>
               </div>
+            </div>
+            <h1>Friends List</h1>
+            <div id="FriendList">
+              {friendsAll}
             </div>
           </div>
         </div>
