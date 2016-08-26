@@ -11,7 +11,7 @@ class Profile extends Component {
       fullname: this.props.user.username,
       username: this.props.user.username,
       email: '',
-      profilePictureURL: this.props.user.profilePictureURL,
+      profilePictureURL: 'Loading...',
       snapScore: 0,
       topFriendName: 'None',
       streak: 0,
@@ -46,7 +46,7 @@ class Profile extends Component {
 
     if (props.user.facebookUserID) {
       this.setState({
-        profilePictureURL: this.props.user.profilePictureURL,
+        profilePictureURL: this.props.user.fbProfPicURL,
       });
     } else {
       if (props.user.profilePicURL) {

@@ -25,7 +25,7 @@ class NavBar extends Component {
     console.log('PROFILE PIC URL NAVBAR', props.user.profilePicURL);
     if (props.user.facebookUserID) {
       this.setState({
-        pic: this.props.user.profilePictureURL,
+        pic: this.props.user.fbProfPicURL,
       });
     } else {
       if (!props.user.profilePicURL) {

@@ -40,7 +40,7 @@ class Settings extends Component {
     });
     if (props.user.facebookUserID) {
       this.setState({
-        pic: this.props.user.profilePicURL,
+        pic: this.props.user.fbProfPicURL,
       });
     } else {
       if (props.user.profilePicURL) {
