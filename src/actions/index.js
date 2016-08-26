@@ -236,20 +236,22 @@ export function fbAuth(accessToken) {
   console.log(`ACCESS TOKEN: ${accessToken}`);
   return (dispatch) => {
     console.log('sending token to facebook...');
-    axios.get(`https://graph.facebook.com/me?fields=id,name,picture.type(large)&access_token=${accessToken}`)
+    axios.get(`https://graph.facebook.com/me?fields=id,first_name,last_name,email,picture.type(large)&access_token=${accessToken}`)
     .then(response => {
       console.log(response);
 
 
       const facebookUserID = response.data.id;
-      const facebookUserName = response.data.name;
+      const facebookUserName = `${response.data.first_name} ${response.data.last_name}`;
+      const facebookEmail = response.data.email;
       const facebookUserPicture = response.data.picture.data.url;
 
       console.log(`facebookUserID: ${facebookUserID}`);
       console.log(`facebookUserName: ${facebookUserName}`);
+      console.log(`facebookEmail: ${facebookEmail}`);
       console.log(`facebookUserPicture: ${facebookUserPicture}`);
 
-      axios.post(`${BASE_URL}/auth/facebook`, { facebookUserID, facebookUserName, facebookUserPicture })
+      axios.post(`${BASE_URL}/auth/facebook`, { facebookUserID, facebookUserName, facebookEmail, facebookUserPicture })
         .then(response2 => {
           console.log(`fb auth called for user id: ${facebookUserID}`);
           console.log(response2);
