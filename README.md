@@ -86,4 +86,6 @@ To deploy your backend changes to Heroku, simply add, commit, and push your chan
 Rajiv Ramaiah, Josh Kerber, Chris Davis, Zuff Idries, Brophy Tyree
 
 ## Acknowledgments
-[The HW5 Part 1 instruction guide](http://cs52.me/assignments/hw5p1/)
+
+[The HW5 Part 1 instruction guide](http://cs52.me/assignments/hw5p2/)
+Also see sources listed within different .js files!
