@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
-import FacebookLogin from '../containers/fb.js';
+// import FacebookLogin from '../containers/fb.js';
 
 class Splash extends Component {
   constructor(props) {
@@ -46,10 +46,6 @@ class Splash extends Component {
           </div>
           <div id="splash-signin">
             Already have an account? <Link to="/signin" onClick={this.hideDisplay} className="SignIn">Sign in.</Link>
-            <div className="Fb">
-              <FacebookLogin />
-              {this.props.children}
-            </div>
           </div>
           <div id="splash-logo">
             <img role="presentation" src="../../images/snapapp-logo.png"></img>

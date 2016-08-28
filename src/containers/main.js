@@ -62,6 +62,9 @@ class Main extends Component {
       return (
         <div>
           <h1 id="recv-snaps-title">NO NEW SNAPS</h1>
+          <div className="main-page-div">
+            <img role="presentation" src="../../images/snapapp-logo.png" />
+          </div>
         </div>
       );
     }
