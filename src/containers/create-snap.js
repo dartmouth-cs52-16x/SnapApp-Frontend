@@ -157,9 +157,20 @@ class CreateSnap extends Component {
   }
 
   choseWebcam() {
-    this.setState({
-      usingWebcam: 1,
-    });
+    // adapted from http://stackoverflow.com/questions/5899783/detect-safari-using-jquery
+    // identify browser
+    let isChrome = navigator.userAgent.indexOf('Chrome') > -1;
+    let isSafari = navigator.userAgent.indexOf('Safari') > -1;
+    const isOpera = navigator.userAgent.toLowerCase().indexOf('op') > -1;
+    if ((isChrome) && (isSafari)) { isSafari = false; }
+    if ((isChrome) && (isOpera)) { isChrome = false; }
+    if (isSafari) {
+      window.alert('SnapApp does not yet support webcam capture in Safari. We apologize for this inconvenience.');
+    } else {
+      this.setState({
+        usingWebcam: 1,
+      });
+    }
   }
 
   snapshot() {
