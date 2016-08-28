@@ -226,6 +226,8 @@ export function signupUser({ email, password, username }) {
   };
 }
 
+
+// Currently not using fb auth in this version
 export function fbAuth(accessToken) {
   console.log('authenticating with facebook...');
   console.log(`ACCESS TOKEN: ${accessToken}`);
