@@ -1,3 +1,5 @@
+
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getSnaps } from '../actions';
@@ -17,6 +19,8 @@ class Main extends Component {
   componentWillMount() {
     console.log('GETTING SNAPS');
     this.props.getSnaps();
+
+    // Source: http://www.w3schools.com/jsref/met_win_setinterval.asp
     const refreshInterval = setInterval(() => {
       console.log('GETTING SNAPS');
       this.props.getSnaps();
