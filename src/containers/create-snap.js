@@ -97,6 +97,8 @@ class CreateSnap extends Component {
 
   onDrop(files) {
     const reader = new FileReader();
+
+    // calls callback on response
     reader.onload = this.callback;
 
 
@@ -105,6 +107,7 @@ class CreateSnap extends Component {
       console.log(stuff.getMessage());
     };
 
+    // get image data
     reader.readAsDataURL(files[0]);
 
     // const newArray = this.state.files.slice();

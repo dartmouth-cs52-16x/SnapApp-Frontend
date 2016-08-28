@@ -1,3 +1,5 @@
+// Adapted from http://cs52.me/assignments/hw5p2/
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';

@@ -44,6 +44,7 @@ class Settings extends Component {
     //   });
     // } else {
     if (props.user.profilePicURL) {
+      // Source: http://stackoverflow.com/questions/17657184/using-jquerys-ajax-method-to-retrieve-images-as-a-blob
       jQuery.get(props.user.profilePicURL, (data) => {
         // console.log('THIS IS THE DATA', data);
         this.setState({
@@ -52,6 +53,7 @@ class Settings extends Component {
       });
     } else {
       this.setState({
+        // placeholder
         pic: 'http://xacatolicos.com/app/images/avatar/icon-user.png',
       });
     }
