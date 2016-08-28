@@ -11,12 +11,13 @@ class Profile extends Component {
       fullname: this.props.user.username,
       username: this.props.user.username,
       email: '',
-      profilePictureURL: 'Loading...',
+      profilePictureURL: 'http://xacatolicos.com/app/images/avatar/icon-user.png',
       snapScore: 0,
       topFriendName: 'None',
       streak: 0,
       friends: 0,
       groups: 0,
+      recievedProps: 0,
     };
   }
 
@@ -44,47 +45,56 @@ class Profile extends Component {
       friends: props.user.friends.length,
     });
 
-    if (props.user.facebookUserID) {
-      this.setState({
-        profilePictureURL: this.props.user.fbProfPicURL,
+    // if (props.user.facebookUserID) {
+    //   this.setState({
+    //     profilePictureURL: this.props.user.fbProfPicURL,
+    //   });
+    // } else {
+    if (props.user.profilePicURL) {
+      jQuery.get(props.user.profilePicURL, (data) => {
+        // console.log('THIS IS THE DATA', data);
+        this.setState({
+          profilePictureURL: data,
+          recievedProps: 1,
+        });
       });
     } else {
-      if (props.user.profilePicURL) {
-        jQuery.get(props.user.profilePicURL, (data) => {
-          // console.log('THIS IS THE DATA', data);
-          this.setState({
-            profilePictureURL: data,
-          });
-        });
-      } else {
-        this.setState({
-          profilePictureURL: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
-        });
-      }
+      this.setState({
+        profilePictureURL: 'http://xacatolicos.com/app/images/avatar/icon-user.png',
+        recievedProps: 1,
+      });
     }
   }
 
   render() {
-    console.log(this.props.user);
-    return (
-      <div className="profile-top">
-        <div id="profile-header">PROFILE</div>
-        <div className="profile">
-          <div id="profile-pic">
-            <img src={this.state.profilePictureURL} alt="null" className="prof-user-img" />
-          </div>
-          <h1>{this.props.user.username}</h1>
-          <h4>{this.props.user.email}</h4>
-          <div className="list-holder">
-            <ul className="profile-ul1">
-              <li><i className="material-icons">star</i> SNAP SCORE <span id="fl">{this.props.user.snapScore}</span></li>
-              <li><i className="material-icons">person_pin</i> TOP FRIEND <span id="fl">{this.state.topFriendName}</span></li>
-              <li><i className="material-icons">group</i> FRIENDS <span id="fl">{this.state.friends}</span></li>
-            </ul>
+    if (this.state.recievedProps === 0) {
+      return (
+        <div className="profile-top">
+          <div id="profile-header">LOADING PROFILE...</div>
+        </div>
+      );
+    } else {
+      console.log(this.props.user);
+      return (
+        <div className="profile-top">
+          <div id="profile-header">PROFILE</div>
+          <div className="profile">
+            <div id="profile-pic">
+              <img src={this.state.profilePictureURL} alt="null" className="prof-user-img" />
+            </div>
+            <h1>{this.props.user.username}</h1>
+            <h4>{this.props.user.email}</h4>
+            <div className="list-holder">
+              <ul className="profile-ul1">
+                <li><i className="material-icons">star</i> SNAP SCORE <span id="fl">{this.props.user.snapScore}</span></li>
+                <li><i className="material-icons">person_pin</i> TOP FRIEND <span id="fl">{this.state.topFriendName}</span></li>
+                <li><i className="material-icons">group</i> FRIENDS <span id="fl">{this.state.friends}</span></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

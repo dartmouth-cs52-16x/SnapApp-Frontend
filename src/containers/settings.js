@@ -38,23 +38,22 @@ class Settings extends Component {
       email: props.user.email,
       password: props.user.password,
     });
-    if (props.user.facebookUserID) {
-      this.setState({
-        pic: this.props.user.fbProfPicURL,
+    // if (props.user.facebookUserID) {
+    //   this.setState({
+    //     pic: this.props.user.fbProfPicURL,
+    //   });
+    // } else {
+    if (props.user.profilePicURL) {
+      jQuery.get(props.user.profilePicURL, (data) => {
+        // console.log('THIS IS THE DATA', data);
+        this.setState({
+          pic: data,
+        });
       });
     } else {
-      if (props.user.profilePicURL) {
-        jQuery.get(props.user.profilePicURL, (data) => {
-          // console.log('THIS IS THE DATA', data);
-          this.setState({
-            pic: data,
-          });
-        });
-      } else {
-        this.setState({
-          pic: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png',
-        });
-      }
+      this.setState({
+        pic: 'http://xacatolicos.com/app/images/avatar/icon-user.png',
+      });
     }
   }
 
@@ -124,7 +123,7 @@ class Settings extends Component {
   }
 
   deleteProfile() {
-    if (window.confirm('Are you sure you want to delete this post, this action cannot be undone!')) {
+    if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
       this.props.deleteUser(localStorage.getItem('token'));
       this.props.signoutUser();
       // backend function
@@ -143,7 +142,7 @@ class Settings extends Component {
                 <li>  USERNAME <span id="fl">{this.state.username}</span></li>
                 <li>  EMAIL <span id="fl">{this.state.email}</span></li>
                 <li>  PASSWORD <span id="fl">&#8226;</span></li>
-                <li>  PROFILE PICTURE <span id="ppicon"><i className="material-icons">photo</i></span></li>
+                <li>  PROFILE PICTURE <span id="ppicon"><i className="material-icons">person_pin</i></span></li>
               </ul>
               <div className="content-row">
                 <div onClick={this.updateInfo} id="settings-change-info">UPDATE INFO</div>

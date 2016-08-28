@@ -12,7 +12,7 @@ const Snap = (props) => {
         <div className="home-snap-full" id="home-snap-first">
           <Link to={`snaps/${props.snapId}`}>
             <div id="snap-circle">
-              <i className="material-icons" id="home-snap-icon-no-hover">drafts</i>
+              <i className="material-icons" id="home-snap-icon-no-hover">mail</i>
               <i className="material-icons md-36" id="home-snap-icon-hover">drafts</i>
             </div>
           </Link>
@@ -28,7 +28,7 @@ const Snap = (props) => {
         <div className="home-snap-full" id="home-snap-first">
           <Link to={`snaps/${props.snapId}`}>
             <div id="snap-circle">
-              <i className="material-icons" id="home-snap-icon-no-hover">drafts</i>
+              <i className="material-icons" id="home-snap-icon-no-hover">mail</i>
               <i className="material-icons md-36" id="home-snap-icon-hover">drafts</i>
             </div>
           </Link>
@@ -46,7 +46,7 @@ const Snap = (props) => {
         <div className="home-snap-full">
           <Link to={`snaps/${props.snapId}`}>
             <div id="snap-circle">
-              <i className="material-icons" id="home-snap-icon-no-hover">drafts</i>
+              <i className="material-icons" id="home-snap-icon-no-hover">mail</i>
               <i className="material-icons md-36" id="home-snap-icon-hover">drafts</i>
             </div>
           </Link>
@@ -62,7 +62,7 @@ const Snap = (props) => {
         <div className="home-snap-full">
           <Link to={`snaps/${props.snapId}`}>
             <div id="snap-circle">
-              <i className="material-icons" id="home-snap-icon-no-hover">drafts</i>
+              <i className="material-icons" id="home-snap-icon-no-hover">mail</i>
               <i className="material-icons md-36" id="home-snap-icon-hover">drafts</i>
             </div>
           </Link>

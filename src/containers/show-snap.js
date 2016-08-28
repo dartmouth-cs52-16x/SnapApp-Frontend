@@ -3,6 +3,7 @@ import { getSnap, deleteSnap } from '../actions/index';
 import { connect } from 'react-redux';
 import Timer from 'react.timer';
 import jQuery from 'jquery';
+import { browserHistory } from 'react-router';
 
 
 class ShowSnap extends Component {
@@ -47,6 +48,7 @@ class ShowSnap extends Component {
         });
         const snapTimeout = setTimeout(() => {
           this.props.deleteSnap(this.props.params.id);
+          browserHistory.push('/snaps');
         }, this.state.timer * 1000);
         this.setState({
           timeout: snapTimeout,
@@ -62,28 +64,48 @@ class ShowSnap extends Component {
 
   render() {
     if (this.state.src) {
-      return (
-        <div id="show-snap-full">
-          <div id="show-snap-tops">
-            <div id="show-snap-header">NEW SNAP FROM {this.state.sentFrom}</div>
-            <div id="timer-div">
-              <i className="material-icons">timer</i><Timer countDown startTime={this.state.timer} />
+      if (this.state.caption !== '') {
+        return (
+          <div id="show-snap-full">
+            <div id="show-snap-tops">
+              <div id="show-snap-header2">NEW SNAP FROM {this.state.sentFrom}</div>
+              <div id="timer-div">
+                <i className="material-icons">timer</i><Timer countDown startTime={this.state.timer} />
+              </div>
+            </div>
+            <div className="show-snap-outer">
+              <div id="show-snap-box">
+                <img role="presentation" src={this.state.src} />
+              </div>
+              <div id="show-snap-caption">
+                {this.state.caption}
+              </div>
             </div>
           </div>
-          <div className="show-snap-outer">
-            <div id="show-snap-box">
-              <img role="presentation" src={this.state.src} />
+        );
+      } else {
+        return (
+          <div id="show-snap-full">
+            <div id="show-snap-tops">
+              <div id="show-snap-header2">NEW SNAP FROM {this.state.sentFrom}</div>
+              <div id="timer-div">
+                <i className="material-icons">timer</i><Timer countDown startTime={this.state.timer} />
+              </div>
             </div>
-            <div id="show-snap-caption">
-              {this.state.caption}
+            <div className="show-snap-outer">
+              <div id="show-snap-box">
+                <img role="presentation" src={this.state.src} />
+              </div>
+              <div id="no-caption">
+              </div>
             </div>
           </div>
-        </div>
-      );
+        );
+      }
     } else {
       return (
         <div id="show-snap-full">
-          <div id="show-snap-header">NEW SNAP FROM {this.state.sentFrom}</div>
+          <div id="show-snap-header2">NEW SNAP FROM {this.state.sentFrom}</div>
           <div id="show-snap-box">
             <h2> LOADING... </h2>
           </div>

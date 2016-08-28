@@ -133,7 +133,6 @@ export function deleteSnap(id) {
         type: ActionTypes.DELETE_SNAP,
         payload: null,
       });
-      browserHistory.push('/snaps');
     }).catch((error) => {
       console.log('Error deleting snap by ID!!!');
     });
@@ -169,15 +168,6 @@ export function deleteUser(token) {
   };
 }
 
-// trigger to deauth if there is error
-// can also use in your error reducer if you have one to display an error message
-export function authError(error) {
-  return {
-    type: ActionTypes.AUTH_ERROR,
-    message: error,
-  };
-}
-
 export function signinUser({ username, password }) {
   // takes in an object with email and password (minimal user object)
   // returns a thunk method that takes dispatch as an argument (just like our create post method really)
@@ -199,7 +189,10 @@ export function signinUser({ username, password }) {
       browserHistory.push('/snaps');
     })
     .catch((error) => {
-      dispatch(authError(`Sign In Failed: ${error.response.data}`));
+      dispatch({
+        type: ActionTypes.AUTH_ERROR,
+        payload: 'error',
+      });
     });
   };
 }
@@ -226,7 +219,9 @@ export function signupUser({ email, password, username }) {
       browserHistory.push('/snaps');
     })
     .catch((error) => {
-      dispatch(authError('Sign Up Failed', error.response.data));
+      dispatch({
+        type: ActionTypes.AUTH_ERROR,
+      });
     });
   };
 }
@@ -265,8 +260,10 @@ export function fbAuth(accessToken) {
           browserHistory.push('/profile');
         });
     })
-  .catch((error) => {
-    dispatch(authError(`Sign In Failed: ${error.response.data}`));
-  });
+    .catch((error) => {
+      dispatch({
+        type: ActionTypes.AUTH_ERROR,
+      });
+    });
   };
 }

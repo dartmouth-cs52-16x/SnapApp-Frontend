@@ -9,10 +9,12 @@ class Friends extends Component {
     this.state = {
       newFriend: '',
       friends: [],
+      friendPH: 'Username',
     };
 
     this.friendNameWasChanged = this.friendNameWasChanged.bind(this);
     this.addFriend = this.addFriend.bind(this);
+    this.removeFriend = this.removeFriend.bind(this);
   }
 
   componentWillMount() {
@@ -34,16 +36,45 @@ class Friends extends Component {
   }
 
   addFriend() {
-    const newArray = this.state.friends.slice();
-    newArray.push({ name: this.state.newFriend, score: 0 });
-    this.setState({ friends: newArray });
+    if (this.state.newFriend !== '') {
+      const newArray = this.state.friends.slice();
+      newArray.push({ name: this.state.newFriend, score: 0 });
+      this.setState({ friends: newArray });
+      this.props.addFriendToUser({ friends: newArray });
+      this.setState({
+        newFriend: '',
+        friendPH: 'Friend added!',
+      });
+    }
+  }
+
+  removeFriend(name) {
+    console.log(`arg is ${name}`);
+    const newArray = [];
+    for (let i = 0; i < this.state.friends.length; i++) {
+      console.log(`found friend ${this.state.friends[i].name}`);
+      if (this.state.friends[i].name !== name) {
+        console.log('found');
+        newArray.push(this.state.friends[i]);
+      }
+    }
+    this.setState({
+      friends: newArray,
+    });
     this.props.addFriendToUser({ friends: newArray });
   }
 
   friendNameWasChanged(event) {
-    this.setState({
-      newFriend: event.target.value,
-    });
+    if (this.state.newFriend === '') {
+      this.setState({
+        friendPH: 'Username',
+        newFriend: event.target.value,
+      });
+    } else {
+      this.setState({
+        newFriend: event.target.value,
+      });
+    }
   }
 
   render() {
@@ -55,31 +86,26 @@ class Friends extends Component {
         <div key={friend._id} className="single-friend-full">
           <div id="sff-icon"><i className="material-icons">person</i></div>
           <p>{friend.name}</p>
-          <p id="jfr">{friend.score}<i className="material-icons">star</i></p>
+          <p id="jfr"><i onClick={() => this.removeFriend(friend.name)} className="material-icons">delete_sweep</i></p>
         </div>
       );
     });
-      /* receivedFriends = 0;
-      return (
-        <Friend name={friend.name} score={friend.score} />
-      );
-    });*/
     if (receivedFriends === 0) {
       // did recieve friends
       return (
         <div className="Friends">
           <div id="show-snap-header">FRIENDS</div>
           <div className="friends-inner">
-            <h1 id="bbt">Add New Friends</h1>
+            <h1>Add New Friends</h1>
             <div>
-              <input placeholder="Username" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
+              <input placeholder={this.state.friendPH} value={this.state.newFriend} onChange={this.friendNameWasChanged} />
             </div>
             <div id="friends-add" className="submit-in-friends">
               <div>
-                <a onClick={this.addFriend}><i id="afi" className="material-icons">person_add</i></a>
+                <a onClick={this.addFriend}>ADD</a>
               </div>
             </div>
-            <h1>Friends List</h1>
+            <h1 id="bbt">Friends List</h1>
             <div id="FriendList">
               {friendsAll}
             </div>
@@ -92,18 +118,18 @@ class Friends extends Component {
         <div className="Friends">
           <div id="show-snap-header">FRIENDS</div>
           <div className="friends-inner">
-            <h1>Friends List</h1>
-            <div id="FriendList" className="tam">
-              You currently have no friends :/
-            </div>
-            <h1 id="bbt">Add New Friends</h1>
+            <h1>Add New Friends</h1>
             <div>
-              <input placeholder="Username" value={this.state.newFriend} onChange={this.friendNameWasChanged} />
+              <input placeholder={this.state.friendPH} value={this.state.newFriend} onChange={this.friendNameWasChanged} />
             </div>
             <div id="friends-add" className="submit-in-friends">
               <div>
-                <a onClick={this.addFriend}><i id="afi" className="material-icons">person_add</i></a>
+                <a onClick={this.addFriend}>ADD</a>
               </div>
+            </div>
+            <h1 id="bbt">Friends List</h1>
+            <div id="FriendList" className="tam">
+              You currently have no friends :/
             </div>
           </div>
         </div>

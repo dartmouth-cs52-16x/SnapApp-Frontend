@@ -44,9 +44,11 @@
   },
   "dependencies": {
     "axios": "^0.13.1",
+    "immutability-helper": "^2.0.0",
     "jquery": "^3.1.0",
     "moment": "^2.14.1",
     "mongoose": "^4.5.10",
+    "nodemailer": "^2.5.0",
     "pretty-date": "^0.2.0",
     "rc-slider": "^4.0.1",
     "react": "^0.14.8",

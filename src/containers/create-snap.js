@@ -5,6 +5,8 @@ import Dropzone from 'react-dropzone';
 import Webcam from 'react-webcam';
 import { browserHistory } from 'react-router';
 import Range from 'react-range';
+import Friend from '../components/friend.js';
+import update from 'immutability-helper';
 
 /* adapted from https://www.npmjs.com/package/webcam-capture */
 /* webcam!! */
@@ -23,10 +25,11 @@ class CreateSnap extends Component {
       pic: '',
       timerVal: 5,
       friends: [],
-      sentTo: '',
+      sentToTextField: '',
+      sentTo: [],
     };
 
-    this.handleCheck = this.handleCheck.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.resetPage = this.resetPage.bind(this);
     this.snapshot = this.snapshot.bind(this);
     this.choseWebcam = this.choseWebcam.bind(this);
@@ -61,11 +64,18 @@ class CreateSnap extends Component {
       pictureURL = this.state.caption;
     }
     const sentFrom = this.props.user.username;
-    const sentTo = this.state.sentTo;
     const caption = this.state.caption;
     const timer = this.state.timerVal;
-    console.log(`timer is  ${timer}`);
-    this.props.createSnap({ caption, timer, pictureURL, sentFrom, sentTo, file: this.state.pic });
+    for (let i = 0; i < this.state.sentTo.length; i++) {
+      const sentTo = this.state.sentTo[i];
+      this.props.createSnap({ caption, timer, pictureURL, sentFrom, sentTo, file: this.state.pic });
+      console.log(`SNAP SENT TO ${sentTo}`);
+    }
+    if (this.state.sentToTextField !== '') {
+      const sentTo = this.state.sentToTextField;
+      this.props.createSnap({ caption, timer, pictureURL, sentFrom, sentTo, file: this.state.pic });
+      console.log(`SNAP SENT TO ${sentTo}`);
+    }
     browserHistory.push('/snaps');
   }
 
@@ -105,15 +115,30 @@ class CreateSnap extends Component {
     });
   }
 
-
   onOpenClick() {
     this.refs.dropzone.open();
   }
 
-  handleCheck(event) {
-    this.setState({
-      sentTo: event.target.value,
-    });
+  handleClick(name) {
+    let foundName = 0;
+    for (let i = 0; i < this.state.sentTo.length; i++) {
+      if (this.state.sentTo[i] === name) {
+        // update array and remove index i
+        this.setState({
+          sentTo: update(this.state.sentTo, { $splice: [[i, 1]] }),
+        });
+        foundName = 1;
+        break;
+      }
+    }
+    if (foundName === 0) {
+      // new person to send
+      const friendArray = this.state.sentTo;
+      friendArray.push(name);
+      this.setState({
+        sentTo: friendArray,
+      });
+    }
   }
 
   handleOnChange(event) {
@@ -152,7 +177,7 @@ class CreateSnap extends Component {
 
   snapSentToSet(event) {
     this.setState({
-      sentTo: event.target.value,
+      sentToTextField: event.target.value,
     });
   }
 
@@ -166,18 +191,36 @@ class CreateSnap extends Component {
   }
 
   checkSentTo() {
-    this.props.checkUserExists({ sentTo: this.state.sentTo });
+    this.props.checkUserExists({ sentTo: this.state.sentToTextField });
   }
 
   render() {
+    let friendsAdded = 0;
     let friendsAll = this.state.friends.map((friend) => {
+      friendsAdded = 1;
+      if (friend.name != null) {
+        return (
+          <div id="friend-holder" onClick={() => this.handleClick(friend.name)}>
+            <Friend name={friend.name} score={friend.score} />
+          </div>
+        );
+      } else {
+        return null;
+      }
+    });
+    if (friendsAdded === 0) {
       return (
-        <div id="ns-checkname-div">
-          <input id="ns-checkname" type="text" onClick={this.handleCheck} value={friend.name} />
+        <div className="NewSnap">
+          <div id="ns-header">SEND A SNAP</div>
+          <div onClick={this.resetPage} id="ns-reset-div">
+            <i className="material-icons">replay</i>
+            <p>RESET</p>
+          </div>
+          <div className="cts">You currently have no friends :/</div>
+          <div className="cts">Friends are required to send snaps. Add some using the friends tab!</div>
         </div>
       );
-    });
-    if (this.state.snapReady === 0) {
+    } else if (this.state.snapReady === 0) {
       // snap not ready to send
       if (this.state.usingWebcam === 1) {
         // using webcam
@@ -190,7 +233,7 @@ class CreateSnap extends Component {
             </div>
             <h4>PRESS PHOTO TO CAPTURE</h4>
             <div className="pic-to-send-webcam" onClick={this.snapshot}>
-              <Webcam ref="webcam" />
+              <Webcam audio={false} ref="webcam" />
             </div>
           </div>
         );
@@ -233,16 +276,13 @@ class CreateSnap extends Component {
                 <div className="pic-to-send" onClick={this.retakePic}>
                   {this.state.pic ? <img alt="null" src={this.state.pic} /> : null}
                 </div>
-                <div>
-                  <input placeholder="Recipient's username" value={this.state.sentTo} onChange={this.snapSentToSet} />
-                </div>
-                <div>CLICK OR TYPE USERNAME</div>
+                <div id="bbp">SELECT FRIENDS</div>
                 {friendsAll}
                 <div>
-                  <input placeholder="Caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
+                  <input className="ssf-inner-input" placeholder="Add a caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
                 </div>
                 <div>
-                  <Range max={10} min={1} value={this.state.timerVal} onChange={this.handleOnChange} />
+                  <Range className="ssf-inner-input" max={10} min={1} value={this.state.timerVal} onChange={this.handleOnChange} />
                 </div>
                 <div>
                   <i className="material-icons">timer</i>{this.state.timerVal}
@@ -271,16 +311,13 @@ class CreateSnap extends Component {
                 <div className="pic-to-send">
                   {this.state.pic ? <img alt="null" src={this.state.pic} /> : null}
                 </div>
-                <div>
-                  <input placeholder="Recipient's username" value={this.state.sentTo} onChange={this.snapSentToSet} />
-                </div>
-                <div>CLICK OR TYPE USERNAME</div>
+                <div id="bbp">SELECT FRIENDS</div>
                 {friendsAll}
                 <div>
-                  <input placeholder="Caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
+                  <input className="ssf-inner-input" placeholder="Add a caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
                 </div>
                 <div>
-                  <Range max={10} min={1} value={this.state.timerVal} onChange={this.handleOnChange} />
+                  <Range className="ssf-inner-input" max={10} min={1} value={this.state.timerVal} onChange={this.handleOnChange} />
                 </div>
                 <div>
                   <i className="material-icons">timer</i>{this.state.timerVal}
