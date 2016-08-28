@@ -27,6 +27,7 @@ class CreateSnap extends Component {
       friends: [],
       sentToTextField: '',
       sentTo: [],
+      propsRecv: 0,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -53,6 +54,7 @@ class CreateSnap extends Component {
     console.log('RECEIVED USER', props.user);
     this.setState({
       friends: props.user.friends,
+      propsRecv: 1,
     });
   }
 
@@ -208,14 +210,10 @@ class CreateSnap extends Component {
         return null;
       }
     });
-    if (friendsAdded === 0) {
+    if (this.state.propsRecv === 1 && friendsAdded === 0) {
       return (
         <div className="NewSnap">
           <div id="ns-header">SEND A SNAP</div>
-          <div onClick={this.resetPage} id="ns-reset-div">
-            <i className="material-icons">replay</i>
-            <p>RESET</p>
-          </div>
           <div className="cts">You currently have no friends :/</div>
           <div className="cts">Friends are required to send snaps. Add some using the friends tab!</div>
         </div>
@@ -276,10 +274,8 @@ class CreateSnap extends Component {
                 <div className="pic-to-send" onClick={this.retakePic}>
                   {this.state.pic ? <img alt="null" src={this.state.pic} /> : null}
                 </div>
-                <div id="bbp">SELECT FRIENDS</div>
-                {friendsAll}
                 <div>
-                  <input className="ssf-inner-input" placeholder="Add a caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
+                  <input className="ssf-inner-input" placeholder="Caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
                 </div>
                 <div>
                   <Range className="ssf-inner-input" max={10} min={1} value={this.state.timerVal} onChange={this.handleOnChange} />
@@ -287,6 +283,8 @@ class CreateSnap extends Component {
                 <div>
                   <i className="material-icons">timer</i>{this.state.timerVal}
                 </div>
+                <div id="bbp">SELECT FRIENDS</div>
+                {friendsAll}
                 <div id="splash-signup" className="submit-in-ssf">
                   <div>
                     <a onClick={this.onSubmit}>SEND</a>
@@ -311,10 +309,8 @@ class CreateSnap extends Component {
                 <div className="pic-to-send">
                   {this.state.pic ? <img alt="null" src={this.state.pic} /> : null}
                 </div>
-                <div id="bbp">SELECT FRIENDS</div>
-                {friendsAll}
                 <div>
-                  <input className="ssf-inner-input" placeholder="Add a caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
+                  <input className="ssf-inner-input" placeholder="Caption *optional" value={this.state.caption} onChange={this.imageCaptionWasSet} />
                 </div>
                 <div>
                   <Range className="ssf-inner-input" max={10} min={1} value={this.state.timerVal} onChange={this.handleOnChange} />
@@ -322,6 +318,8 @@ class CreateSnap extends Component {
                 <div>
                   <i className="material-icons">timer</i>{this.state.timerVal}
                 </div>
+                <div id="bbp">SELECT FRIENDS</div>
+                {friendsAll}
                 <div id="splash-signup" className="submit-in-ssf">
                   <div>
                     <a onClick={this.onSubmit}>SEND</a>

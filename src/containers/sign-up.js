@@ -112,6 +112,8 @@ class SignUp extends Component {
               <input placeholder="Password" type="password" value={this.state.password} onChange={this.passwordWasChanged} />
             </div>
             <span>*all fields required</span>
+            <i id="secure-user-i" className="material-icons">vpn_lock</i>
+            <p id="secure-user">Your informaton is safe with us.</p>
             <div id="splash-signup" className="submit-in-sui">
               <div>
                 <a onClick={this.signUserUp}>SUBMIT</a>
@@ -166,6 +168,8 @@ class SignUp extends Component {
               <input placeholder="Password" type="password" value={this.state.password} onChange={this.passwordWasChanged} />
             </div>
             <span>*all fields required</span>
+            <i id="secure-user-i" className="material-icons">vpn_lock</i>
+            <p id="secure-user">Your informaton is safe with us.</p>
             <div id="splash-signup" className="submit-in-sui">
               <div>
                 <a onClick={this.signUserUp}>SUBMIT</a>

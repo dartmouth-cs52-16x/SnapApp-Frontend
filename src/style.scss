@@ -449,7 +449,7 @@ body {
 }
 
 .pic-to-send {
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
@@ -492,6 +492,10 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
+}
+
+.ssf-inner i {
+  margin-top: -5px;
 }
 
 .ssf-inner-input {
@@ -569,6 +573,7 @@ body {
 .profile {
   background-color: rgba(255, 255, 255, 0.6);
   width: 400px;
+  border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -641,6 +646,7 @@ body {
 }
 
 .settings {
+  border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.6);
   width: 400px;
   margin-left: auto;
@@ -651,7 +657,7 @@ body {
   text-align: center;
   padding-bottom: 20px;
   padding-top: 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .settings li {
@@ -1170,7 +1176,9 @@ body {
 }
 
 #bbp {
-  margin-top: 10px;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.1);
   margin-bottom: 5px;
 }
 
@@ -1178,6 +1186,24 @@ body {
   text-align: center;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+
+#secure-user {
+  color: black;
+  margin-top: 0px;
+  padding-top: 2px;
+}
+
+#secure-user-i {
+  font-size: 32px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 0;
+}
+
+#secure-user span {
+  color: black;
 }
 
 /* ====== BACKGROUND LOGO ======== */
