@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 const prettydate = require('pretty-date');
 
 const Snap = (props) => {
-  console.log('DISPLAYED SNAP PROPS', props);
   // id="home-snap-first"
   let date = prettydate.format(new Date(props.time));
   if (props.spec === 'first') {
