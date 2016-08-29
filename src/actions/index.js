@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-// const BASE_URL = 'http://localhost:9090/api';
-const BASE_URL = 'https://snap-app-backend-fb.herokuapp.com/api';
+const BASE_URL = 'http://localhost:9090/api';
+// const BASE_URL = 'https://snap-app-backend-fb.herokuapp.com/api';
 
 export const ActionTypes = {
   FETCH_SNAPS: 'FETCH_SNAPS',
@@ -125,10 +125,10 @@ export function getSnap(id) {
   };
 }
 
-export function deleteSnap(id) {
+export function deleteSnap(id, fields) {
   console.log('deleting snap');
   return (dispatch) => {
-    axios.delete(`${BASE_URL}/snaps/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
+    axios.put(`${BASE_URL}/snaps/${id}`, fields, { headers: { authorization: localStorage.getItem('token') } }).then((response) => {
       dispatch({
         type: ActionTypes.DELETE_SNAP,
         payload: null,
@@ -160,6 +160,7 @@ export function deleteUser(token) {
         type: ActionTypes.DELETE_POST,
         payload: null,
       });
+      browserHistory.push('/');
       // do something with response.data  (some json)
     }).catch(error => {
       // hit an error do something else!

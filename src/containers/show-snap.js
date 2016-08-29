@@ -18,6 +18,7 @@ class ShowSnap extends Component {
       timer: 5,
       caption: '',
       timeout: null,
+      deleted: 0,
     };
   }
 
@@ -47,7 +48,10 @@ class ShowSnap extends Component {
           src: data,
         });
         const snapTimeout = setTimeout(() => {
-          this.props.deleteSnap(this.props.params.id);
+          this.props.deleteSnap(this.props.params.id, { snap: this.props.snap });
+          this.setState({
+            deleted: 1,
+          });
           browserHistory.push('/snaps');
         }, this.state.timer * 1000);
         this.setState({
@@ -59,7 +63,11 @@ class ShowSnap extends Component {
 
   componentWillUnmount() {
     clearTimeout(this.state.timeout);
-    this.props.deleteSnap(this.props.params.id);
+    if (this.state.deleted !== 1) {
+      this.props.deleteSnap(this.props.params.id, { snap: this.props.snap });
+    } else {
+      this.props.deleteSnap(this.props.params.id, { snap: this.props.snap });
+    }
   }
 
   render() {
